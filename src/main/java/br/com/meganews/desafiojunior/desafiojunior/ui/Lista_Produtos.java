@@ -6,18 +6,25 @@ import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
 import br.com.meganews.desafiojunior.desafiojunior.repository.GrupoRepository;
 import br.com.meganews.desafiojunior.desafiojunior.repository.IBuscaProdutoRepository;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 
 import javax.swing.text.html.FormView;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.ResourceBundle;
 
-public class Lista_Produtos {
+public class Lista_Produtos implements Initializable {
     @FXML
     private Label welcomeText;
+
+    @FXML
+    private ListView<String> myListWiew;
 
     IBuscaProdutoRepository produtoRepository;
 
@@ -90,10 +97,45 @@ public class Lista_Produtos {
 
         msg= Msg;
 
+
+        try {
+            CarregaInformacoesExtras();
+            ConfiguraEditPesquisa();
+            ConfiguraSeBotaoSalvarHabilitado(habilitar);
+        }catch (Exception ex){
+            ex.getStackTrace();
+         //   Util.showToast(this, "Erro: "+ ex.getMessage());
+        }
+
     }
+
+    private void CarregaInformacoesExtras() {
+
+
+    }
+
+
+    private void ConfiguraEditPesquisa() {
+
+
+    }
+
+
+    private void ConfiguraSeBotaoSalvarHabilitado(String habilitar) {
+
+    }
+
 
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText(msg);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        String[] itens={"Java", "c", "c#"};
+
+        myListWiew.getItems().addAll(itens);
     }
 }
