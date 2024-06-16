@@ -8,10 +8,12 @@ import br.com.meganews.desafiojunior.desafiojunior.repository.IBuscaProdutoRepos
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import javax.swing.text.html.FormView;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Lista_Produtos {
     @FXML
@@ -67,8 +69,31 @@ public class Lista_Produtos {
 
     double DescontoPlanoValor = 0;
 
+
+    double ipi_bc_valor, ipi_valor, icms_aliquota, icms_bc_valor, icms_bc_por, icms_st_bc_por,
+            icms_valor, icms_st_aliquota, icms_st_bc_valor, mva, icms_st_valor, fcp, reducao_bc;
+
+    private int index= 0;
+
+    private int top = 0;
+
+
+    private static final Locale LOCAL = new Locale("pt","BR");
+
+    private int tipoPreco;
+
+    private String msg;
+    @FXML
+    protected FormView hellofForm;
+
+    public Lista_Produtos(String Msg) {
+
+        msg= Msg;
+
+    }
+
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+        welcomeText.setText(msg);
     }
 }
