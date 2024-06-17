@@ -13,10 +13,10 @@ import java.net.URL;
 public class ProdutoListViewCell extends ListCell<Produto> {
 
     @FXML
-    private Label label1;
+    private Label label2;
 
     @FXML
-    private Label label2;
+    private Label label4;
 
     @FXML
     private GridPane gridPane;
@@ -46,8 +46,8 @@ public class ProdutoListViewCell extends ListCell<Produto> {
 
             }
 
-            label1.setText(String.valueOf(produto.getCodigo()));
-            label2.setText(produto.getProduto());
+            label2.setText(String.valueOf(produto.getCodigo()));
+            label4.setText(produto.getProduto());
 
             setText(null);
             setGraphic(gridPane);

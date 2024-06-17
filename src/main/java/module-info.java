@@ -2,6 +2,7 @@ module br.com.meganews.desafiojunior.desafiojunior {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires org.json;
 
 
     opens br.com.meganews.desafiojunior.desafiojunior to javafx.fxml;
