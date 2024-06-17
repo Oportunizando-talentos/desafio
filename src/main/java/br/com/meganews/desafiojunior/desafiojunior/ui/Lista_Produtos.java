@@ -28,6 +28,7 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Connection;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
@@ -106,11 +107,15 @@ public class Lista_Produtos implements Initializable {
     @FXML
     protected FormView hellofForm;
 
+    private Connection connection;
+
     private ObservableList<Produto> produtoObservableList;
 
-    public Lista_Produtos(String Msg) {
+    public Lista_Produtos(Connection dbConnection) {
 
-        msg = Msg;
+
+
+        connection = dbConnection;
 
         produtoObservableList = FXCollections.observableArrayList();
         produtoObservableList.add(new Produto("00000",

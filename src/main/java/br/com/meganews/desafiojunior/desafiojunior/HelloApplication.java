@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class HelloApplication extends Application {
     @Override
@@ -15,7 +18,7 @@ public class HelloApplication extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
 
-        fxmlLoader.setController(new Lista_Produtos("New Controller"));
+        fxmlLoader.setController(new Lista_Produtos(dbConnection()));
 
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
 
@@ -28,5 +31,28 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private Connection dbConnection(){
+
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/tabelas";
+        String username = "admin";
+        String password = "admin";
+
+        try {
+            Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        Connection connection;
+
+        try {
+            connection = DriverManager.getConnection(jdbcUrl, username, password);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return connection;
     }
 }
