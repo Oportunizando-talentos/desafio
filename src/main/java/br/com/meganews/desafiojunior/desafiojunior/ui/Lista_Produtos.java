@@ -5,12 +5,16 @@ import br.com.meganews.desafiojunior.desafiojunior.model.ItensPedido;
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
 import br.com.meganews.desafiojunior.desafiojunior.repository.GrupoRepository;
 import br.com.meganews.desafiojunior.desafiojunior.repository.IBuscaProdutoRepository;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import javax.swing.text.html.FormView;
+import java.math.BigDecimal;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -24,7 +28,7 @@ public class Lista_Produtos implements Initializable {
     private Label welcomeText;
 
     @FXML
-    private ListView<String> myListWiew;
+    private ListView<Produto> myListWiew;
 
     IBuscaProdutoRepository produtoRepository;
 
@@ -93,10 +97,33 @@ public class Lista_Produtos implements Initializable {
     @FXML
     protected FormView hellofForm;
 
+    private ObservableList<Produto> produtoObservableList;
+
     public Lista_Produtos(String Msg) {
 
         msg= Msg;
 
+        produtoObservableList = FXCollections.observableArrayList();
+        produtoObservableList.add(new Produto("00000",
+                "teste",
+                "",
+                "",
+                "",
+                "teste",
+                "10",
+                BigDecimal.TEN,
+                BigDecimal.ONE));
+
+
+        produtoObservableList.add(new Produto("01000",
+                "teste",
+                "",
+                "",
+                "",
+                "teste",
+                "10",
+                BigDecimal.TEN,
+                BigDecimal.ONE));
 
         try {
             CarregaInformacoesExtras();
@@ -128,14 +155,19 @@ public class Lista_Produtos implements Initializable {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText(msg);
+
+        Platform.exit(); // Encerra a plataforma JavaFX
+        System.exit(0);  // Encerra a aplicação Java
+
     }
+
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        String[] itens={"Java", "c", "c#"};
-
-        myListWiew.getItems().addAll(itens);
+        myListWiew.setItems(produtoObservableList);
+        myListWiew.setCellFactory(myListWiew -> new ProdutoListViewCell());
     }
 }
