@@ -1,5 +1,7 @@
 package br.com.meganews.desafiojunior.desafiojunior.ui;
 
+import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
+
 import java.math.BigDecimal;
 
 public class Produto {
@@ -34,4 +36,16 @@ public class Produto {
     public String getEstoque() {return Estoque;}
     public BigDecimal getPreco() {return Preco;}
     public BigDecimal getPrecoUnidade() {return PrecoUnidade;}
+
+    public Produto(Produtos produtos){
+        Codigo = produtos.getCodigoDeBarra();
+        Produto = produtos.getDescricao();
+        Referencia = produtos.getReferencia();
+        Aplicacao = produtos.getAplicacao();
+        Marca = produtos.getIdMarca();
+        Grupo = produtos.getIdGrupo();
+        Estoque = produtos.getEstoqueAtual();
+        Preco = new BigDecimal( produtos.getPreco());
+        PrecoUnidade = new BigDecimal( produtos.getPrecoUnidade());
+    }
 }

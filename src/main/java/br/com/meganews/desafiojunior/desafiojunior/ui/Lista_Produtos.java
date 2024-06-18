@@ -33,6 +33,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Lista_Produtos implements Initializable {
 
@@ -119,16 +120,18 @@ public class Lista_Produtos implements Initializable {
 
         produtoObservableList = FXCollections.observableArrayList();
 
+        ProdutoRepository p = new ProdutoRepository(connection);
+        List<Produtos> list = p.buscarProduto(null, null, null);
 
+        List<Produto> collect = list.stream().map(Produto::new).toList();
 
-
+        produtoObservableList.addAll(collect);
         try {
             CarregaInformacoesExtras();
             ConfiguraEditPesquisa();
             ConfiguraSeBotaoSalvarHabilitado(habilitar);
         } catch (Exception ex) {
             ex.getStackTrace();
-            //   Util.showToast(this, "Erro: "+ ex.getMessage());
         }
 
     }
@@ -297,7 +300,7 @@ public class Lista_Produtos implements Initializable {
         try {
             produtoRepository = new ProdutoRepository(connection);
             List<Produtos> registroId = produtoRepository.buscarProdutoZerado("0");
-            if (registroId.size() != 0) {
+            if (!registroId.isEmpty()) {
                 for (int idP = 0; idP < registroId.size(); idP++) {
                     var produtoZerado = new ProdutoZeradoRepository(connection);
                     ProdutoZerado prodZ = new ProdutoZerado(registroId.get(idP).getCodigoDeBarra());
@@ -306,6 +309,7 @@ public class Lista_Produtos implements Initializable {
             }
         }catch (Exception ex){
 
+            ex.printStackTrace();
         }
     }
 

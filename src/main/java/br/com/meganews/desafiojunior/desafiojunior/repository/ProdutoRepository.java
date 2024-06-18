@@ -25,7 +25,7 @@ public class ProdutoRepository implements IProdutoRepository, IBuscaProdutoRepos
 
         try {
             Statement db = sqlConnection.createStatement();
-            String sql = "SELECT CODIGO_BARRA_PRODUTO, ESTOQUE_ATUAL FROM TB_PRODUTO";
+            String sql = "SELECT * FROM TB_PRODUTO";
             String[] argumentos = null;
             if (filtro != null) {
                 sql += " WHERE ESTOQUE_ATUAL = '" + filtro + "'";
@@ -37,7 +37,53 @@ public class ProdutoRepository implements IProdutoRepository, IBuscaProdutoRepos
             {
 
                 Produtos produto = new Produtos();
-                produto.setCodigoDeBarra(resultSet.getString("resultSet"));
+                produto.setCodigoDeBarra(resultSet.getString("CODIGO_BARRA_PRODUTO"));
+
+                produto.setAplicacao(resultSet.getString("APLICACAO"));
+                produto.setDetalheProduto(resultSet.getString("DETALHE"));
+                produto.setIdProduto(resultSet.getInt("ID_PRODUTO"));
+                produto.setFotoProduto(resultSet.getString("FOTO_PRODUTO"));
+                produto.setCst(resultSet.getString("CST"));
+
+                produto.setDataUltimaEntradaEstoque(resultSet.getString("DT_ULTIMA_ENTRADA_ESTOQUE"));
+                produto.setDesabilitado(resultSet.getString("DESABILITADO"));
+                produto.setDescGrupo(resultSet.getString("ID_GRUPO"));
+                produto.setDescMarca(resultSet.getString("ID_MARCA"));
+                produto.setDescricao(resultSet.getString("DESCRICAO"));
+                produto.setEstoqueAtual(resultSet.getString("ESTOQUE_ATUAL"));
+                produto.setEstoqueReposto(resultSet.getString("ESTOQUE_REPOSTO"));
+                produto.setFcp(resultSet.getString("FCP"));
+                produto.setIcms_aliquota(resultSet.getString("ICMS_ALIQUOTA"));
+                produto.setIcms_bc_por(resultSet.getString("ICMS_BC_POR"));
+                produto.setIcms_bc_valor(resultSet.getString("ICMS_BC_VALOR"));
+                produto.setIcms_st_bc_por(resultSet.getString("ICMS_BC_POR"));
+                produto.setIcms_st_bc_valor(resultSet.getString("ICMS_ST_BC_VALOR"));
+                produto.setIcms_st_bc_valor_pf(resultSet.getString("ICMS_ST_BC_VALOR_PF"));
+                produto.setIcms_st_valor(resultSet.getString("ICMS_ST_VALOR"));
+                produto.setIcms_st_valor_pf(resultSet.getString("ICMS_ST_VALOR_PF"));
+                produto.setIcms_valor(resultSet.getString("ICMS_VALOR"));
+                produto.setIdCarga(resultSet.getString("ID_CARGA"));
+                produto.setIdGrupo(resultSet.getString("ID_GRUPO"));
+                produto.setIdMarca(resultSet.getString("ID_MARCA"));
+
+                produto.setIpi_aliquota(resultSet.getString("IPI_ALIQUOTA"));
+                produto.setIpi_bc_valor(resultSet.getString("IPI_BC_VALOR"));
+                produto.setIpi_valor(resultSet.getString("IPI_VALOR"));
+                produto.setMva(resultSet.getString("MVA"));
+                produto.setMva_pf(resultSet.getString("MVA_PF"));
+                produto.setPreco(resultSet.getString("PRECO"));
+                produto.setPrecoAnterior(resultSet.getString("PRECO_ANTERIOR"));
+                produto.setPrecoPF(resultSet.getString("PRECO_PF"));
+                produto.setPrecoPJ(resultSet.getString("PRECO_PJ"));
+                produto.setPrecoUnidade(resultSet.getString("PRECO_UNIDADE"));
+                produto.setPromocao(resultSet.getString("PROMOCAO"));
+                produto.setQuantEmbalagem(resultSet.getString("QUANT_EMBALAGEM"));
+                produto.setQuantidadeFracioanl(resultSet.getString("QTD_FRACIONAL"));
+                produto.setReducaoBC(resultSet.getString("REDUCAO_BC"));
+                produto.setReferencia(resultSet.getString("REFERENCIA"));
+
+                produto.setTabelaPreco(resultSet.getString("PRECO_TABELA"));
+                produto.setUnidade(resultSet.getString("UNIDADE"));
                 prod.add(produto);
 
             }
@@ -77,7 +123,7 @@ public class ProdutoRepository implements IProdutoRepository, IBuscaProdutoRepos
             {
 
                 Produtos produto = new Produtos();
-                produto.setCodigoDeBarra(resultSet.getString("resultSet"));
+                produto.setCodigoDeBarra(resultSet.getString("CODIGO_BARRA_PRODUTO"));
                 prod.add(produto);
 
             }
