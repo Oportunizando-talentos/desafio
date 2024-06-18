@@ -7,9 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class HelloApplication extends Application {
     @Override
@@ -21,7 +19,7 @@ public class HelloApplication extends Application {
 
         new BancoDeDados(dbConnection).onCreate();
 
-        new Consulta(dbConnection).init();
+        if (!tabelaCheia(dbConnection)) new Consulta(dbConnection).init();
 
         fxmlLoader.setController(new Lista_Produtos(dbConnection));
 
@@ -38,6 +36,21 @@ public class HelloApplication extends Application {
         launch();
     }
 
+
+    private boolean tabelaCheia(Connection db){
+
+        String sql = "SELECT COUNT(*) AS total FROM TB_PRODUTO";
+        try {
+            PreparedStatement pstmt = db.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next() && rs.getInt("total") > 0) return true;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return false;
+    }
     private Connection dbConnection(){
 
         String jdbcUrl = "jdbc:postgresql://localhost:5432/tabelas";
