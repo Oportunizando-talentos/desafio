@@ -22,3 +22,5 @@ Pré-requisitos
 * Java Development Kit (JDK) 22: Certifique-se de ter o JDK 22 instalado em seu ambiente de desenvolvimento.
 * Banco de Dados: Instale e configure o banco de dados escolhido.
 * IDE (Opcional): Utilize sua IDE preferida (ex: Eclipse, IntelliJ IDEA) para facilitar o desenvolvimento.
+
+![image info](./dc6a15_716238808d854372aa15f7f3df6b797d~mv2.webp)
