@@ -10,10 +10,11 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Button mnemonicParsing="false" onAction="#onAttulizaButtonClick" prefHeight="24.0" prefWidth="94.0" text="Atualizar" />
    <Label prefHeight="38.0" prefWidth="139.0" text="Controle de Produto" textAlignment="CENTER" />
    <ListView fx:id="myListWiew" prefHeight="531.0" prefWidth="1084.0" />
+   <Label alignment="BOTTOM_LEFT" text="Tatal Produtos" />
+   <Label fx:id="label" alignment="BOTTOM_RIGHT" text="Label" />
 
     <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" text="Hello!" />
+   <Button mnemonicParsing="false" onAction="#onAttulizaButtonClick" prefHeight="24.0" prefWidth="94.0" text="Atualizar" />
 </VBox>

@@ -1,39 +1,28 @@
 package br.com.meganews.desafiojunior.desafiojunior.ui;
 
-import br.com.meganews.desafiojunior.desafiojunior.model.Grupo;
-import br.com.meganews.desafiojunior.desafiojunior.model.ItensPedido;
 import br.com.meganews.desafiojunior.desafiojunior.model.ProdutoZerado;
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
-import br.com.meganews.desafiojunior.desafiojunior.repository.GrupoRepository;
 import br.com.meganews.desafiojunior.desafiojunior.repository.IBuscaProdutoRepository;
 import br.com.meganews.desafiojunior.desafiojunior.repository.ProdutoRepository;
 import br.com.meganews.desafiojunior.desafiojunior.repository.ProdutoZeradoRepository;
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.swing.text.html.FormView;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.Connection;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Lista_Produtos implements Initializable {
 
@@ -41,79 +30,21 @@ public class Lista_Produtos implements Initializable {
     @FXML
     private ListView<Produto> myListWiew;
 
+    @FXML
+    private Label label;
+
     IBuscaProdutoRepository produtoRepository;
 
-    List<Produtos> registro;
-
-    ArrayList<Produtos> dadosListProd;
-
-    ArrayList<ItensPedido> dadosIt;
-
-    String habilitar;
-
-    Produtos itemPosicao;
 
     String data_formatada, hora_formatada;
 
-    double somaAcumulo = 0;
-
-    double percDesconto;
-
-    NumberFormat formato1;
-
-    DecimalFormat formato2;
-
-    double totalItem;
-
-    double valorDescontoitem;
-
-    double resultado;
-
-    double sTotal;
-
-    String caracterBusca, caracterBusca2, caracterGrupo, CNPJ;
-
-    long idPedido = 0;
-
-    GrupoRepository dbGrupo;
-
-    ArrayList<Grupo> opcoesGrupo;
-
-    ArrayList<Grupo> listGrupo;
-
-    String DescricaoGrupo;
-
-    double bigPreco;
-
-    String listaResumida;
-
-    double PrecoTabela = 0;
-
-    double DescontoPlanoValor = 0;
-
-
-    double ipi_bc_valor, ipi_valor, icms_aliquota, icms_bc_valor, icms_bc_por, icms_st_bc_por,
-            icms_valor, icms_st_aliquota, icms_st_bc_valor, mva, icms_st_valor, fcp, reducao_bc;
-
-    private int index = 0;
-
-    private int top = 0;
-
-
     private static final Locale LOCAL = new Locale("pt", "BR");
-
-    private int tipoPreco;
-
-    private String msg;
-    @FXML
-    protected FormView hellofForm;
 
     private Connection connection;
 
     private ObservableList<Produto> produtoObservableList;
 
     public Lista_Produtos(Connection dbConnection) {
-
 
 
         connection = dbConnection;
@@ -126,38 +57,6 @@ public class Lista_Produtos implements Initializable {
         List<Produto> collect = list.stream().map(Produto::new).toList();
 
         produtoObservableList.addAll(collect);
-        try {
-            CarregaInformacoesExtras();
-            ConfiguraEditPesquisa();
-            ConfiguraSeBotaoSalvarHabilitado(habilitar);
-        } catch (Exception ex) {
-            ex.getStackTrace();
-        }
-
-    }
-
-    private void CarregaInformacoesExtras() {
-
-
-    }
-
-
-    private void ConfiguraEditPesquisa() {
-
-
-    }
-
-
-    private void ConfiguraSeBotaoSalvarHabilitado(String habilitar) {
-
-    }
-
-
-    @FXML
-    protected void onHelloButtonClick() {
-
-        Platform.exit();
-        System.exit(0);
 
     }
 
@@ -172,7 +71,7 @@ public class Lista_Produtos implements Initializable {
         boolean erro = false;
 
         try {
-            URL urlNet = new URL("http://191.252.65.184/comercial/ProdutoCarga/ServicoProdutoCarga.svc/ConsultarProdutoCarga/1");
+            URL urlNet = new URL("http://191.252.65.184/comercial/Produto/ServicoProduto.svc/ConsultarProduto/1");
             HttpURLConnection con = (HttpURLConnection) urlNet.openConnection();
             con.setRequestMethod("GET");
             con.setDoInput(true);
@@ -274,9 +173,8 @@ public class Lista_Produtos implements Initializable {
             } else {
                 erro = true;
             }
-        }
-        catch (JSONException e) {
-             erro = true;
+        } catch (JSONException e) {
+            erro = true;
         }
         resultado.toString();
     }
@@ -295,7 +193,6 @@ public class Lista_Produtos implements Initializable {
     }
 
 
-
     public void buscarProdutoZerado() {
         try {
             produtoRepository = new ProdutoRepository(connection);
@@ -307,18 +204,23 @@ public class Lista_Produtos implements Initializable {
                     produtoZerado.insertProdutoZerado(prodZ);
                 }
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
 
             ex.printStackTrace();
         }
     }
 
 
+    private void ContaItens() {
+        label.setText(String.valueOf(produtoObservableList.size()));
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         myListWiew.setItems(produtoObservableList);
         myListWiew.setCellFactory(myListWiew -> new ProdutoListViewCell());
+
+        ContaItens();
     }
 }

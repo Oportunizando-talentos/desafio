@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutoRepository implements IProdutoRepository, IBuscaProdutoRepository, IProdutoEstoqueRepository {
+public class ProdutoRepository implements IProdutoRepository, IBuscaProdutoRepository {
 
     private Connection sqlConnection;
 
@@ -14,10 +14,7 @@ public class ProdutoRepository implements IProdutoRepository, IBuscaProdutoRepos
         this.sqlConnection = sqlConnection;
     }
 
-    @Override
-    public boolean ExisteProduto(String idProduto) {
-        return false;
-    }
+
 
     @Override
     public List buscarProduto(String filtro, String filtro2, String chkGrupo) {
@@ -99,10 +96,7 @@ public class ProdutoRepository implements IProdutoRepository, IBuscaProdutoRepos
         return prod;
     }
 
-    @Override
-    public List buscarProdutoNaPromocao(String filtro, String filtro2, String chkGrupo) {
-        return List.of();
-    }
+
 
     @Override
     public List<Produtos> buscarProdutoZerado(String filtro) {
@@ -139,30 +133,6 @@ public class ProdutoRepository implements IProdutoRepository, IBuscaProdutoRepos
         return prod;
     }
 
-    @Override
-    public String buscarPrecoVenda(String filtro, String tipoPessoa) {
-        return "";
-    }
-
-    @Override
-    public int atualizarEstoque(Produtos produto) {
-        return 0;
-    }
-
-    @Override
-    public int atualizarEstoqueReposto(Produtos produto) {
-        return 0;
-    }
-
-    @Override
-    public String buscarEstProduto(String filtro) {
-        return "";
-    }
-
-    @Override
-    public String buscarPrecoUniProduto(String filtro) {
-        return "";
-    }
 
     @Override
     public void insert(Produtos produto) {
@@ -232,32 +202,19 @@ public class ProdutoRepository implements IProdutoRepository, IBuscaProdutoRepos
     }
 
     @Override
-    public int atualizar(Produtos produto) {
-        return 0;
-    }
-
-    @Override
-    public void salvar(Produtos produto) {
-
-    }
-
-    @Override
-    public void excluir(Produtos produto) {
-
-    }
-
-    @Override
     public void excluirTudo(Produtos produto) {
 
+
+        try {
+
+            var  pstmt =  sqlConnection.createStatement();
+
+            pstmt.executeUpdate("DELETE FROM tb_produto");
+
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+        }
     }
 
-    @Override
-    public void excluirTudoGerenciaCarga(Produtos produto) {
-
-    }
-
-    @Override
-    public void DesabilitaProduto() {
-
-    }
 }

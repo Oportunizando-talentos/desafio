@@ -73,7 +73,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                br.com.meganews.desafiojunior.desafiojunior/br.com.meganews.desafiojunior.desafiojunior.HelloApplication
+                                br.com.meganews.desafiojunior.desafiojunior/br.com.meganews.desafiojunior.desafiojunior.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

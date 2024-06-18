@@ -1,6 +1,6 @@
 package br.com.meganews.desafiojunior.desafiojunior.ui;
 
-import br.com.meganews.desafiojunior.desafiojunior.HelloApplication;
+import br.com.meganews.desafiojunior.desafiojunior.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -17,6 +17,22 @@ public class ProdutoListViewCell extends ListCell<Produto> {
 
     @FXML
     private Label label4;
+    @FXML
+    private Label label6;
+    @FXML
+    private Label label8;
+    @FXML
+    private Label label10;
+    @FXML
+    private Label label12;
+    @FXML
+    private Label label14;
+    @FXML
+    private Label label16;
+    @FXML
+    private Label label17;
+    @FXML
+    private Label label19;
 
     @FXML
     private GridPane gridPane;
@@ -34,7 +50,7 @@ public class ProdutoListViewCell extends ListCell<Produto> {
 
         } else {
             if (mLLoader == null) {
-                URL resource = HelloApplication.class.getResource("list-cell.fxml");
+                URL resource = Main.class.getResource("list-cell.fxml");
                 mLLoader = new FXMLLoader(resource);
                 mLLoader.setController(this);
 
@@ -48,7 +64,14 @@ public class ProdutoListViewCell extends ListCell<Produto> {
 
             label2.setText(String.valueOf(produto.getCodigo()));
             label4.setText(produto.getProduto());
-
+            label6.setText(produto.getReferencia());
+            label8.setText(produto.getPromocao());
+            label10.setText(produto.getMarca());
+            label12.setText(produto.getGrupo());
+            label14.setText(produto.getEstoque());
+            label16.setText(produto.getUnidade());
+            label17.setText(String.valueOf(produto.getPreco()));
+            label19.setText(String.valueOf(produto.getPrecoUnidade()));
             setText(null);
             setGraphic(gridPane);
         }

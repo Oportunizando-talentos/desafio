@@ -5,48 +5,52 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="52.0" prefWidth="1290.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="78.0" prefWidth="1441.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="331.0" minWidth="0.0" prefWidth="0.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="0.0" prefWidth="63.0" />
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="505.0" minWidth="0.0" prefWidth="103.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="671.0" minWidth="10.0" prefWidth="65.0" />
-      <ColumnConstraints maxWidth="638.0" minWidth="0.0" prefWidth="84.0" />
-      <ColumnConstraints maxWidth="527.0" minWidth="21.0" prefWidth="127.0" />
-      <ColumnConstraints maxWidth="414.0" minWidth="42.0" prefWidth="111.0" />
-      <ColumnConstraints maxWidth="416.0" minWidth="12.0" prefWidth="106.0" />
-      <ColumnConstraints maxWidth="358.0" minWidth="38.0" prefWidth="100.0" />
-      <ColumnConstraints maxWidth="296.0" minWidth="42.0" prefWidth="101.0" />
-      <ColumnConstraints maxWidth="186.0" minWidth="28.0" prefWidth="86.0" />
-      <ColumnConstraints maxWidth="183.0" minWidth="21.0" prefWidth="97.0" />
-      <ColumnConstraints maxWidth="110.0" minWidth="26.0" prefWidth="73.0" />
-      <ColumnConstraints maxWidth="85.0" minWidth="15.0" prefWidth="52.0" />
-      <ColumnConstraints maxWidth="82.0" minWidth="37.0" prefWidth="40.0" />
-      <ColumnConstraints maxWidth="98.0" minWidth="31.0" prefWidth="31.0" />
-      <ColumnConstraints maxWidth="99.0" minWidth="26.0" prefWidth="35.0" />
-      <ColumnConstraints maxWidth="82.0" minWidth="18.0" prefWidth="18.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="446.0" minWidth="0.0" prefWidth="57.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="505.0" minWidth="0.0" prefWidth="67.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="671.0" minWidth="10.0" prefWidth="63.0" />
+      <ColumnConstraints maxWidth="638.0" minWidth="0.0" prefWidth="436.0" />
+      <ColumnConstraints maxWidth="527.0" minWidth="11.0" prefWidth="80.0" />
+      <ColumnConstraints maxWidth="414.0" minWidth="10.0" prefWidth="43.0" />
+      <ColumnConstraints maxWidth="416.0" minWidth="12.0" prefWidth="72.0" />
+      <ColumnConstraints maxWidth="358.0" minWidth="38.0" prefWidth="40.0" />
+      <ColumnConstraints maxWidth="334.0" minWidth="42.0" prefWidth="47.0" />
+      <ColumnConstraints maxWidth="364.0" minWidth="28.0" prefWidth="39.0" />
+      <ColumnConstraints maxWidth="357.0" minWidth="21.0" prefWidth="49.0" />
+      <ColumnConstraints maxWidth="406.0" minWidth="26.0" prefWidth="42.0" />
+      <ColumnConstraints maxWidth="396.0" minWidth="15.0" prefWidth="64.0" />
+      <ColumnConstraints maxWidth="378.0" minWidth="34.0" prefWidth="44.0" />
+      <ColumnConstraints maxWidth="383.0" minWidth="31.0" prefWidth="42.0" />
+      <ColumnConstraints maxWidth="358.0" minWidth="26.0" prefWidth="54.0" />
+      <ColumnConstraints maxWidth="428.0" minWidth="18.0" prefWidth="65.0" />
+      <ColumnConstraints maxWidth="379.0" minWidth="101.0" prefWidth="102.0" />
+      <ColumnConstraints maxWidth="264.0" minWidth="38.0" prefWidth="38.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label fx:id="label1" text="Código :" GridPane.columnIndex="1" />
+        <Label fx:id="label1" text="Código:" GridPane.columnIndex="1" />
         <Label fx:id="label2" text="0001" GridPane.columnIndex="2" />
-        <Label fx:id="label3" text="Produto" GridPane.columnIndex="3" />
+        <Label fx:id="label3" text="Produto:" GridPane.columnIndex="3" />
         <Label fx:id="label4" text="Label" GridPane.columnIndex="4" />
-        <Label fx:id="label5" prefHeight="16.0" prefWidth="78.0" text="Referencia" GridPane.columnIndex="5" />
+        <Label fx:id="label5" prefHeight="16.0" prefWidth="78.0" text="Referencia:" GridPane.columnIndex="5" />
         <Label fx:id="label6" text="Label" GridPane.columnIndex="6" />
-        <Label fx:id="label7" text="Aplicação" GridPane.columnIndex="7" />
+        <Label fx:id="label7" text="Promoção:" GridPane.columnIndex="7" />
         <Label fx:id="label8" text="Label" GridPane.columnIndex="8" />
         <Label fx:id="label9" text="Marca:" GridPane.columnIndex="9" />
         <Label fx:id="label10" text="Label" GridPane.columnIndex="10" />
-        <Label fx:id="label11" text="Grupo" GridPane.columnIndex="11" />
+        <Label fx:id="label11" text="Grupo:" GridPane.columnIndex="11" />
         <Label fx:id="label12" text="Label" GridPane.columnIndex="12" />
-        <Label fx:id="label13" text="Estoque" GridPane.columnIndex="13" />
+        <Label fx:id="label13" text="Estoque:" GridPane.columnIndex="13" />
         <Label fx:id="label14" text="Label" GridPane.columnIndex="14" />
-        <Label fx:id="label15" text="Preço" GridPane.columnIndex="15" />
-        <Label fx:id="label16" text="Label" GridPane.columnIndex="16" />
-        <Label fx:id="label17" text="Preço Unidade" GridPane.columnIndex="17" />
+        <Label fx:id="label15" text="Preço:" GridPane.columnIndex="15" />
+        <Label fx:id="label16" text="Unidade" GridPane.columnIndex="16" />
+        <Label fx:id="label17" text="Label" GridPane.columnIndex="17" />
+        <Label fx:id="label18" text="Preço Unidade:" GridPane.columnIndex="18" />
+        <Label fx:id="label19" text="Label" GridPane.columnIndex="19" />
 
     </children>
 </GridPane>
