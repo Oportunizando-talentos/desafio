@@ -118,26 +118,9 @@ public class Lista_Produtos implements Initializable {
         connection = dbConnection;
 
         produtoObservableList = FXCollections.observableArrayList();
-        produtoObservableList.add(new Produto("00000",
-                "teste",
-                "",
-                "",
-                "",
-                "teste",
-                "10",
-                BigDecimal.TEN,
-                BigDecimal.ONE));
 
 
-        produtoObservableList.add(new Produto("01000",
-                "teste",
-                "",
-                "",
-                "",
-                "teste",
-                "10",
-                BigDecimal.TEN,
-                BigDecimal.ONE));
+
 
         try {
             CarregaInformacoesExtras();
@@ -210,11 +193,12 @@ public class Lista_Produtos implements Initializable {
             if (code == 200) {
                 ProdutoZeradoRepository pzerado = new ProdutoZeradoRepository(connection);
                 ProdutoZerado p = new ProdutoZerado();
+
                 pzerado.excluirTudoProdutoZerado(p);
 
                 buscarProdutoZerado();
 
-                ProdutoRepository dbPro = new ProdutoRepository();
+                ProdutoRepository dbPro = new ProdutoRepository(connection);
                 Produtos pro = new Produtos();
                 dbPro.excluirTudo(pro);
 
@@ -311,7 +295,7 @@ public class Lista_Produtos implements Initializable {
 
     public void buscarProdutoZerado() {
         try {
-            produtoRepository = new ProdutoRepository();
+            produtoRepository = new ProdutoRepository(connection);
             List<Produtos> registroId = produtoRepository.buscarProdutoZerado("0");
             if (registroId.size() != 0) {
                 for (int idP = 0; idP < registroId.size(); idP++) {

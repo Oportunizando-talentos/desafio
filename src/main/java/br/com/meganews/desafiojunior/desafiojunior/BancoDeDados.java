@@ -149,7 +149,7 @@ public class BancoDeDados  {
 
 
     private final String SCRIPT_TABELA_PRODUTO = " CREATE TABLE IF NOT EXISTS TB_PRODUTO (" +
-            " ID_PRODUTO INTEGER PRIMARY KEY, " +
+            " ID_PRODUTO SERIAL PRIMARY KEY, " +
             " CODIGO_BARRA_PRODUTO INTEGER, " +
             " DESCRICAO TEXT, " +
             " REFERENCIA TEXT, " +

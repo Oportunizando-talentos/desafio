@@ -21,6 +21,8 @@ public class HelloApplication extends Application {
 
         new BancoDeDados(dbConnection).onCreate();
 
+        new Consulta(dbConnection).init();
+
         fxmlLoader.setController(new Lista_Produtos(dbConnection));
 
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);

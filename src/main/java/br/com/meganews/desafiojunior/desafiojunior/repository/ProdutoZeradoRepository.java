@@ -22,7 +22,7 @@ public class ProdutoZeradoRepository {
 
             var  pstmt =  sqlConnection.createStatement();
 
-            int linhasAfetadas = pstmt.executeUpdate("DELETE FROM tb_produto_zerado");
+           pstmt.executeUpdate("DELETE FROM tb_produto_zerado");
 
         } catch (SQLException e) {
 
