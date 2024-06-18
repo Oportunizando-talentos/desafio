@@ -4,6 +4,7 @@ package br.com.meganews.desafiojunior.desafiojunior.repository;
 import br.com.meganews.desafiojunior.desafiojunior.model.ProdutoZerado;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class ProdutoZeradoRepository {
 
@@ -15,6 +16,18 @@ public class ProdutoZeradoRepository {
 
 
     public void excluirTudoProdutoZerado(ProdutoZerado p) {
+
+
+        try {
+
+            var  pstmt =  sqlConnection.createStatement();
+
+            int linhasAfetadas = pstmt.executeUpdate("DELETE FROM tb_produto_zerado");
+
+        } catch (SQLException e) {
+
+            throw new RuntimeException(e);
+        }
 
     }
 

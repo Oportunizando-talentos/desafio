@@ -208,7 +208,7 @@ public class Lista_Produtos implements Initializable {
         }
         try {
             if (code == 200) {
-                ProdutoZeradoRepository pzerado = new ProdutoZeradoRepository();
+                ProdutoZeradoRepository pzerado = new ProdutoZeradoRepository(connection);
                 ProdutoZerado p = new ProdutoZerado();
                 pzerado.excluirTudoProdutoZerado(p);
 
@@ -315,7 +315,7 @@ public class Lista_Produtos implements Initializable {
             List<Produtos> registroId = produtoRepository.buscarProdutoZerado("0");
             if (registroId.size() != 0) {
                 for (int idP = 0; idP < registroId.size(); idP++) {
-                    var produtoZerado = new ProdutoZeradoRepository();
+                    var produtoZerado = new ProdutoZeradoRepository(connection);
                     ProdutoZerado prodZ = new ProdutoZerado(registroId.get(idP).getCodigoDeBarra());
                     produtoZerado.insertProdutoZerado(prodZ);
                 }
