@@ -1,40 +1,39 @@
-package br.com.meganews.desafiojunior.desafiojunior;
+package br.com.meganews.desafiojunior.desafiojunior.infra;
 
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
-import br.com.meganews.desafiojunior.desafiojunior.repository.ProdutoRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Consulta {
+public class Consulta implements IConsulta{
+    private String url;
 
-     String url =  "http://191.252.65.184/comercial/Produto/ServicoProduto.svc/ConsultarProduto/1";
+//     String url =  "http://191.252.65.184/comercial/Produto/ServicoProduto.svc/ConsultarProduto/1";
 
-     private Connection connection;
-
-    public Consulta(Connection connection) {
-        this.connection = connection;
+    public Consulta(String url) {
+        this.url = url;
     }
 
-    public void init(){
-
+    public List<Produtos> getProdutos(){
         try {
             String consultar = Consultar();
-            Gravar(consultar);
+
+            return Gravar(consultar);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
     }
-    private String Consultar() throws Exception {
+
+    public String Consultar() throws Exception {
         StringBuilder json = new StringBuilder("");
         try {
             URL urlNet = new URL(url);
@@ -47,6 +46,11 @@ public class Consulta {
             InputStreamReader response = new InputStreamReader(inp, StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(response);
             String linha;
+
+            if (codigoResposta != 200) {
+                throw new Exception();
+            }
+
             while ((linha = bufferedReader.readLine()) != null) {
                 json.append("{" + "\"" + "Produto" +"\"" + ":");
                 json.append(linha);
@@ -59,9 +63,8 @@ public class Consulta {
         return json.toString();
     }
 
-    private void Gravar(String resposta) throws Exception {
-        ProdutoRepository dbProduto = new ProdutoRepository(connection);
-
+    public List<Produtos> Gravar(String resposta) throws Exception {
+        List<Produtos> produtos = new ArrayList<>();
 
         JSONObject jsonRootObjectProd;
         try {
@@ -113,10 +116,11 @@ public class Consulta {
                         "",
                         jsonObjectPro.optString("idCarga").isEmpty() ? "" : jsonObjectPro.optString("idCarga")
                 );
-                dbProduto.insert(prod);
+                produtos.add(prod);
             }
         } catch (Exception e) {
             throw e;
         }
+        return produtos;
     }
 }

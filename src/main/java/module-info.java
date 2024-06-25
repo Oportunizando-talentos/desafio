@@ -9,6 +9,10 @@ module br.com.meganews.desafiojunior.desafiojunior {
 
     opens br.com.meganews.desafiojunior.desafiojunior to javafx.fxml;
     exports br.com.meganews.desafiojunior.desafiojunior;
-    exports br.com.meganews.desafiojunior.desafiojunior.ui;
-    opens br.com.meganews.desafiojunior.desafiojunior.ui to javafx.fxml;
+    exports br.com.meganews.desafiojunior.desafiojunior.controller;
+    opens br.com.meganews.desafiojunior.desafiojunior.controller to javafx.fxml;
+    exports br.com.meganews.desafiojunior.desafiojunior.model;
+    opens br.com.meganews.desafiojunior.desafiojunior.model to javafx.fxml;
+    exports br.com.meganews.desafiojunior.desafiojunior.infra;
+    opens br.com.meganews.desafiojunior.desafiojunior.infra to javafx.fxml;
 }

@@ -1,4 +1,4 @@
-package br.com.meganews.desafiojunior.desafiojunior.ui;
+package br.com.meganews.desafiojunior.desafiojunior.controller;
 
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
 

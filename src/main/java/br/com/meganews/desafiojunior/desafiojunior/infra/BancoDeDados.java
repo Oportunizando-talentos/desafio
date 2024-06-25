@@ -1,4 +1,4 @@
-package br.com.meganews.desafiojunior.desafiojunior;
+package br.com.meganews.desafiojunior.desafiojunior.infra;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ public class BancoDeDados  {
     private Connection banco;
 
 
-    BancoDeDados(Connection connection) {
+    public BancoDeDados(Connection connection) {
         this.banco = connection;
     }
 

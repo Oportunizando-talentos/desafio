@@ -16,5 +16,5 @@
    <Label fx:id="label" alignment="BOTTOM_RIGHT" text="Label" />
 
     <Label fx:id="welcomeText" />
-   <Button mnemonicParsing="false" onAction="#onAttulizaButtonClick" prefHeight="24.0" prefWidth="94.0" text="Atualizar" />
+   <Button mnemonicParsing="false" onAction="#onAtualizaButtonClick" prefHeight="24.0" prefWidth="94.0" text="Atualizar" />
 </VBox>
