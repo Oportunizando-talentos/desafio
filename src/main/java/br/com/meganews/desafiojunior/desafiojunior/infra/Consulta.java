@@ -16,8 +16,6 @@ import java.util.List;
 public class Consulta implements IConsulta{
     private String url;
 
-//     String url =  "http://191.252.65.184/comercial/Produto/ServicoProduto.svc/ConsultarProduto/1";
-
     public Consulta(String url) {
         this.url = url;
     }

@@ -2,54 +2,55 @@
 package br.com.meganews.desafiojunior.desafiojunior.model;
 
 
+import java.util.Objects;
 
 public class Produtos {
 
     public long idProduto;
     private String codigoDeBarra;
-    private String descricao;
-    private String referencia;
-    private String idMarca;
-    private String descMarca;
-    private String unidade;
-    private String precoUnidade;
-    private String aplicacao;
-    private String idGrupo;
-    private String descGrupo;
-    private String detalheProduto;
-    private String tabelaPreco;
-    private String preco;
-    private String estoqueAtual;
-    private String fotoProduto;
-    private String dataUltimaEntradaEstoque;
-    private String quantidadeFracioanl;
-    private String promocao;
-    private String precoAnterior;
-    private String setQuant;
-    private String estoqueReposto;
-    private String quantEmbalagem;
-    private String precoPF;
-    private String precoPJ;
-    private String cst;
+    private String descricao = "";
+    private String referencia = "";
+    private String idMarca = "0";
+    private String descMarca = "";
+    private String unidade = "";
+    private String precoUnidade = "";
+    private String aplicacao = "";
+    private String idGrupo = "0";
+    private String descGrupo = "";
+    private String detalheProduto = "";
+    private String tabelaPreco = "";
+    private String preco = "";
+    private String estoqueAtual = "0";
+    private String fotoProduto = "";
+    private String dataUltimaEntradaEstoque = "";
+    private String quantidadeFracioanl = "";
+    private String promocao = "";
+    private String precoAnterior = "";
+    private String setQuant = "";
+    private String estoqueReposto = "";
+    private String quantEmbalagem = "";
+    private String precoPF = "";
+    private String precoPJ = "";
+    private String cst = "";
 
-    private String icms_aliquota;
-    private String icms_bc_valor;
-    private String icms_valor;
-    private String mva;
-    private String icms_st_bc_valor;
-    private String icms_st_valor;
-    private String mva_pf;
-    private String icms_st_bc_valor_pf;
-    private String icms_st_valor_pf;
-    private String ipi_aliquota;
-    private String ipi_bc_valor;
-    private String ipi_valor;
-    private String fcp;
-    private String reducaoBC;
-    private String icms_bc_por;
-    private String icms_st_bc_por;
-    private String bonificacao;
-    private String idCarga = "";
+    private String icms_aliquota = "";
+    private String icms_bc_valor = "";
+    private String icms_valor = "";
+    private String mva = "";
+    private String icms_st_bc_valor = "";
+    private String icms_st_valor = "";
+    private String mva_pf = "";
+    private String icms_st_bc_valor_pf = "";
+    private String icms_st_valor_pf = "";
+    private String ipi_aliquota = "";
+    private String ipi_bc_valor = "";
+    private String ipi_valor = "";
+    private String fcp = "";
+    private String reducaoBC = "";
+    private String icms_bc_por = "";
+    private String icms_st_bc_por = "";
+    private String bonificacao = "";
+    private String idCarga = "0";
     private String desabilitado = "";
 
     public String getDesabilitado() {
@@ -78,6 +79,13 @@ public class Produtos {
         this.idProduto = idProduto;
         this.estoqueAtual = estoqueAtual;
     }
+
+    public Produtos(long idProduto, String codigoDeBarra, String estoqueAtual) {
+        this.idProduto = idProduto;
+        this.codigoDeBarra = codigoDeBarra;
+        this.estoqueAtual = estoqueAtual;
+    }
+
     public Produtos(String codigoDeBarra, String estoqueReposto) {
 
         this.codigoDeBarra = codigoDeBarra;
@@ -587,4 +595,18 @@ public class Produtos {
     public void setBonificacao(String bonificacao) {
         this.bonificacao = bonificacao;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Produtos produtos = (Produtos) o;
+        return idProduto == produtos.idProduto && Objects.equals(codigoDeBarra, produtos.codigoDeBarra);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idProduto, codigoDeBarra);
+    }
+
 }

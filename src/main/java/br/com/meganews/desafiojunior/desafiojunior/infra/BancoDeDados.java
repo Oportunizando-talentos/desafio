@@ -19,41 +19,41 @@ public class BancoDeDados  {
 
     private final String SCRIPT_TABELA_CLIENTE = " CREATE TABLE IF NOT EXISTS TB_CLIENTE (" +
             " ID_CLIENTE INTEGER, " +
-            " RAZAO_SOCIAL TEXT, " +
-            " NOME_FANTASIA TEXT, " +
+            " RAZAO_SOCIAL VARCHAR(255), " +
+            " NOME_FANTASIA VARCHAR(255), " +
             " TIPO INTEGER, " +
-            " CNPJCPF TEXT PRIMARY KEY, " +
-            " RGIE TEXT, " +
-            " DT_CADASTRO TEXT, " +
-            " DT_ATUALIZACAO_CADASTRO TEXT, " +
-            " ENDERECO TEXT, " +
-            " PONTO_REF TEXT, " +
-            " BAIRRO TEXT, " +
-            " CEP TEXT, " +
-            " POVOADO TEXT, " +
-            " UF TEXT, " +
-            " DT_ULTIMA_COMPRA TEXT, " +
-            " LIMITE TEXT, " +
-            " CLASSE TEXT, " +
-            " NOVO_CLIENTE TEXT, " +
+            " CNPJCPF VARCHAR(255) PRIMARY KEY, " +
+            " RGIE VARCHAR(255), " +
+            " DT_CADASTRO VARCHAR(255), " +
+            " DT_ATUALIZACAO_CADASTRO VARCHAR(255), " +
+            " ENDERECO VARCHAR(255), " +
+            " PONTO_REF VARCHAR(255), " +
+            " BAIRRO VARCHAR(255), " +
+            " CEP VARCHAR(255), " +
+            " POVOADO VARCHAR(255), " +
+            " UF VARCHAR(255), " +
+            " DT_ULTIMA_COMPRA VARCHAR(255), " +
+            " LIMITE VARCHAR(255), " +
+            " CLASSE VARCHAR(255), " +
+            " NOVO_CLIENTE VARCHAR(255), " +
             " ID_USUARIO INTEGER, " +
-            " STATUS_ATUALIZACAO TEXT, " +
+            " STATUS_ATUALIZACAO VARCHAR(255), " +
             " ID_ROTA INTEGER, " +
             " ID_CIDADE INTEGER," +
-            " DATA_NASCIMENTO TEXT," +
-            " RESPONSAVEL_COMPRA TEXT, " +
-            " ATIVO TEXT)";
+            " DATA_NASCIMENTO VARCHAR(255)," +
+            " RESPONSAVEL_COMPRA VARCHAR(255), " +
+            " ATIVO VARCHAR(255))";
 
     private final String SCRIPT_TABELA_CONTATO = "CREATE TABLE IF NOT EXISTS TB_CONTATO (" +
             " ID_CONTATO INTEGER PRIMARY KEY, " +
-            " CNPJCPF TEXT, " +
+            " CNPJCPF VARCHAR(255), " +
             " TIPO_CONTATO INTEGER, " +
-            " CONTATO TEXT, " +
-            " OBS_CONTATO TEXT )";
+            " CONTATO VARCHAR(255), " +
+            " OBS_CONTATO VARCHAR(255) )";
 
     private final String SCRIPT_TABELA_ROTA = "CREATE TABLE IF NOT EXISTS TB_ROTA (" +
             " ID_ROTA INTEGER PRIMARY KEY, " +
-            " NOME_ROTA TEXT)";
+            " NOME_ROTA VARCHAR(255))";
 
     private final String SCRIPT_TABELA_ROTA_ATENDIMENTO = "CREATE TABLE IF NOT EXISTS TB_ROTA_ATENDIMENTO (" +
             " ID_VENDEDOR INTEGER, " +
@@ -61,44 +61,44 @@ public class BancoDeDados  {
 
     private final String SCRIPT_TABELA_CIDADE = "CREATE TABLE IF NOT EXISTS TB_CIDADE (" +
             " ID_CIDADE INTEGER PRIMARY KEY, " +
-            " NOME_CIDADE TEXT)";
+            " NOME_CIDADE VARCHAR(255))";
 
     private final String SCRIPT_TABELA_TIPOTITULO = "CREATE TABLE IF NOT EXISTS TB_TIPO_TITULO (" +
             " ID_TIPO INTEGER PRIMARY KEY, " +
-            " TIPO_TITULO TEXT)";
+            " TIPO_TITULO VARCHAR(255))";
 
     private final String SCRIPT_TABELA_TITULO = " CREATE TABLE IF NOT EXISTS TB_TITULO (" +
             " ID_TITULO INTEGER PRIMARY KEY, " +
-            " NUMERO_TITULO TEXT, " +
-            " ID_TIPO_TITULO TEXT, " +
-            " VALOR_TITULO TEXT, " +
+            " NUMERO_TITULO VARCHAR(255), " +
+            " ID_TIPO_TITULO VARCHAR(255), " +
+            " VALOR_TITULO VARCHAR(255), " +
             " PARCELA_TITULO INTEGER, " +
-            " DT_TITULO TEXT, " +
-            " DT_VENCIMENTO_TITULO TEXT, " +
+            " DT_TITULO VARCHAR(255), " +
+            " DT_VENCIMENTO_TITULO VARCHAR(255), " +
             " ID_CLIENTE INTEGER, " +
             " SITUACAO INTEGER, " +
-            " DT_RECEBIMENTO TEXT )";
+            " DT_RECEBIMENTO VARCHAR(255) )";
 
     private final String SCRIPT_TABELA_PEDIDO = "CREATE TABLE IF NOT EXISTS TB_PEDIDO (" +
             " ID_PEDIDO INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            " CNPJCPF TEXT, " +
+            " CNPJCPF VARCHAR(255), " +
             " ID_USUARIO INTEGER, " +
-            " OBSERVACAO TEXT, " +
+            " OBSERVACAO VARCHAR(255), " +
             " ID_PLANO_PAGAMENTO INTEGER, " +
             " ID_FORMA_PAGAMENTO INTEGER, " +
-            " DT_PEDIDO TEXT," +
-            " HORA_PEDIDO TEXT, " +
-            " VALOR_DESCONTO TEXT, " +
-            " DT_ENVIO TEXT, " +
-            " HORA_ENVIO TEXT, " +
-            " DT_FECHAMENTO_PEDIDO TEXT, " +
-            " HORA_FECHAMENTO_PEDIDO TEXT, " +
+            " DT_PEDIDO VARCHAR(255)," +
+            " HORA_PEDIDO VARCHAR(255), " +
+            " VALOR_DESCONTO VARCHAR(255), " +
+            " DT_ENVIO VARCHAR(255), " +
+            " HORA_ENVIO VARCHAR(255), " +
+            " DT_FECHAMENTO_PEDIDO VARCHAR(255), " +
+            " HORA_FECHAMENTO_PEDIDO VARCHAR(255), " +
             " STATUS INTEGER, " +
-            " VALOR_TOTAL_PEDIDO TEXT, " +
-            " FINALIDADE_PEDIDO TEXT, " +
+            " VALOR_TOTAL_PEDIDO VARCHAR(255), " +
+            " FINALIDADE_PEDIDO VARCHAR(255), " +
             " CHECKBOX_MARCADO INTEGER, " +
-            " VERSAO_APP TEXT, " +
-            " STATUS_EDICAO TEXT," +
+            " VERSAO_APP VARCHAR(255), " +
+            " STATUS_EDICAO VARCHAR(255)," +
             " ID_CARGA INTEGER," +
             " TIPO_PRECO_DIFERENCIADO INTEGER)";
 
@@ -106,178 +106,179 @@ public class BancoDeDados  {
             " ID_ITEM_PEDIDO INTEGER PRIMARY KEY, " +
             " ID_PEDIDO INTEGER, " +
             " ID_PRODUTO INTEGER, " +
-            " VALOR_DESCONTO_ITEM TEXT, " +
-            " VALOR_ACRESCIMO_ITEM TEXT, " +
+            " VALOR_DESCONTO_ITEM VARCHAR(255), " +
+            " VALOR_ACRESCIMO_ITEM VARCHAR(255), " +
             " QTD_ITEM_PEDIDO INTEGER, " +
-            " PRECO_TABELA TEXT, " +
-            " PRECO_VENDA TEXT, " +
-            " CST TEXT, " +
-            " SUBTOTAL TEXT, " +
-            " ICMS_ALIQUOTA TEXT, " +
-            " ICMS_BC_VALOR TEXT, " +
-            " ICMS_VALOR TEXT, " +
-            " MVA TEXT, " +
-            " ICMS_ST_BC_VALOR TEXT, " +
-            " ICMS_ST_VALOR TEXT, " +
-            " MVA_PF TEXT, " +
-            " ICMS_ST_BC_VALOR_PF TEXT, " +
-            " ICMS_ST_VALOR_PF TEXT, " +
-            " IPI_ALIQUOTA TEXT, " +
-            " IPI_BC_VALOR TEXT, " +
-            " IPI_VALOR TEXT, " +
-            " FCP TEXT," +
-            " ICMS_BC_POR TEXT," +
-            " ICMS_ST_BC_POR TEXT," +
-            " DESC_PLANO_POR TEXT, " +
-            " DESC_PLANO_VALOR TEXT, " +
-            " REDUCAO_BC TEXT, " +
-            " STATUS_EXCLUSAO TEXT, " +
-            " BONIFICACAO TEXT, " +
-            " ID_PROMOCAO TEXT, " +
-            " DESCONTO_PROMOCAO TEXT )";
+            " PRECO_TABELA VARCHAR(255), " +
+            " PRECO_VENDA VARCHAR(255), " +
+            " CST VARCHAR(255), " +
+            " SUBTOTAL VARCHAR(255), " +
+            " ICMS_ALIQUOTA VARCHAR(255), " +
+            " ICMS_BC_VALOR VARCHAR(255), " +
+            " ICMS_VALOR VARCHAR(255), " +
+            " MVA VARCHAR(255), " +
+            " ICMS_ST_BC_VALOR VARCHAR(255), " +
+            " ICMS_ST_VALOR VARCHAR(255), " +
+            " MVA_PF VARCHAR(255), " +
+            " ICMS_ST_BC_VALOR_PF VARCHAR(255), " +
+            " ICMS_ST_VALOR_PF VARCHAR(255), " +
+            " IPI_ALIQUOTA VARCHAR(255), " +
+            " IPI_BC_VALOR VARCHAR(255), " +
+            " IPI_VALOR VARCHAR(255), " +
+            " FCP VARCHAR(255)," +
+            " ICMS_BC_POR VARCHAR(255)," +
+            " ICMS_ST_BC_POR VARCHAR(255)," +
+            " DESC_PLANO_POR VARCHAR(255), " +
+            " DESC_PLANO_VALOR VARCHAR(255), " +
+            " REDUCAO_BC VARCHAR(255), " +
+            " STATUS_EXCLUSAO VARCHAR(255), " +
+            " BONIFICACAO VARCHAR(255), " +
+            " ID_PROMOCAO VARCHAR(255), " +
+            " DESCONTO_PROMOCAO VARCHAR(255) )";
 
     private final String SCRIPT_TABELA_PLANO_PAGAMENTO = "CREATE TABLE IF NOT EXISTS TB_PLANO_PAGAMENTO (" +
             " ID_PLANO_PAGAMENTO INTEGER PRIMARY KEY, " +
             " TIPO_PLANO INTEGER, " +
-            " DESCRICAO_PLANO TEXT, " +
-            " ENTRADA TEXT, " +
-            " QUANT_DIAS TEXT, " +
+            " DESCRICAO_PLANO VARCHAR(255), " +
+            " ENTRADA VARCHAR(255), " +
+            " QUANT_DIAS VARCHAR(255), " +
             " PARCELA INTEGER, " +
-            " TXA TEXT, " +
-            " PCT_VENDA_EXTERNA TEXT, " +
-            " TIPO_PCT TEXT )";
+            " TXA VARCHAR(255), " +
+            " PCT_VENDA_EXTERNA VARCHAR(255), " +
+            " TIPO_PCT VARCHAR(255) )";
 
 
     private final String SCRIPT_TABELA_PRODUTO = " CREATE TABLE IF NOT EXISTS TB_PRODUTO (" +
-            " ID_PRODUTO SERIAL PRIMARY KEY, " +
+            " ID_PRODUTO INTEGER PRIMARY KEY, " +
             " CODIGO_BARRA_PRODUTO INTEGER, " +
-            " DESCRICAO TEXT, " +
-            " REFERENCIA TEXT, " +
-            " UNIDADE TEXT, " +
-            " PRECO_UNIDADE TEXT, " +
-            " APLICACAO TEXT, " +
-            " DETALHE TEXT, " +
-            " PRECO_TABELA TEXT, " +
-            " PRECO TEXT, " +
+            " DESCRICAO VARCHAR(255), " +
+            " REFERENCIA VARCHAR(255), " +
+            " UNIDADE VARCHAR(255), " +
+            " PRECO_UNIDADE VARCHAR(255), " +
+            " APLICACAO VARCHAR(255), " +
+            " DETALHE VARCHAR(255), " +
+            " PRECO_TABELA VARCHAR(255), " +
+            " PRECO VARCHAR(255), " +
             " ESTOQUE_ATUAL INTEGER, " +
-            " FOTO_PRODUTO TEXT, " +
-            " DT_ULTIMA_ENTRADA_ESTOQUE TEXT, " +
-            " QTD_FRACIONAL TEXT, " +
-            " PROMOCAO TEXT, " +
-            " ESTOQUE_REPOSTO TEXT, " +
-            " PRECO_ANTERIOR TEXT, " +
+            " FOTO_PRODUTO VARCHAR(255), " +
+            " DT_ULTIMA_ENTRADA_ESTOQUE VARCHAR(255), " +
+            " QTD_FRACIONAL VARCHAR(255), " +
+            " PROMOCAO VARCHAR(255), " +
+            " ESTOQUE_REPOSTO VARCHAR(255), " +
+            " PRECO_ANTERIOR VARCHAR(255), " +
             " ID_GRUPO INTEGER, " +
             " ID_MARCA INTEGER, " +
-            " CST TEXT, " +
-            " PRECO_PF TEXT, " +
-            " PRECO_PJ TEXT, " +
-            " QUANT_EMBALAGEM TEXT, " +
-            " ICMS_ALIQUOTA TEXT, " +
-            " ICMS_BC_VALOR TEXT, " +
-            " ICMS_VALOR TEXT, " +
-            " MVA TEXT, " +
-            " ICMS_ST_BC_VALOR TEXT, " +
-            " ICMS_ST_VALOR TEXT, " +
-            " MVA_PF TEXT, " +
-            " ICMS_ST_BC_VALOR_PF TEXT, " +
-            " ICMS_ST_VALOR_PF TEXT, " +
-            " IPI_ALIQUOTA TEXT, " +
-            " IPI_BC_VALOR TEXT, " +
-            " IPI_VALOR TEXT, " +
-            " FCP TEXT, " +
-            " ICMS_BC_POR TEXT, " +
-            " ICMS_ST_BC_POR TEXT, " +
-            " DESC_PLANO_POR TEXT, " +
-            " DESC_PLANO_VALOR TEXT, " +
-            " REDUCAO_BC TEXT, " +
+            " CST VARCHAR(255), " +
+            " PRECO_PF VARCHAR(255), " +
+            " PRECO_PJ VARCHAR(255), " +
+            " QUANT_EMBALAGEM VARCHAR(255), " +
+            " ICMS_ALIQUOTA VARCHAR(255), " +
+            " ICMS_BC_VALOR VARCHAR(255), " +
+            " ICMS_VALOR VARCHAR(255), " +
+            " MVA VARCHAR(255), " +
+            " ICMS_ST_BC_VALOR VARCHAR(255), " +
+            " ICMS_ST_VALOR VARCHAR(255), " +
+            " MVA_PF VARCHAR(255), " +
+            " ICMS_ST_BC_VALOR_PF VARCHAR(255), " +
+            " ICMS_ST_VALOR_PF VARCHAR(255), " +
+            " IPI_ALIQUOTA VARCHAR(255), " +
+            " IPI_BC_VALOR VARCHAR(255), " +
+            " IPI_VALOR VARCHAR(255), " +
+            " FCP VARCHAR(255), " +
+            " ICMS_BC_POR VARCHAR(255), " +
+            " ICMS_ST_BC_POR VARCHAR(255), " +
+            " DESC_PLANO_POR VARCHAR(255), " +
+            " DESC_PLANO_VALOR VARCHAR(255), " +
+            " REDUCAO_BC VARCHAR(255), " +
             " ID_CARGA INTEGER," +
-            " DESABILITADO TEXT)";
+            " DESABILITADO VARCHAR(255))";
 
     private final String SCRIPT_TABELA_MARCA = "CREATE TABLE IF NOT EXISTS TB_MARCA (" +
             " ID_MARCA INTEGER PRIMARY KEY, " +
-            " DESCRICAO_MARCA TEXT)";
+            " DESCRICAO_MARCA VARCHAR(255))";
 
     private final String SCRIPT_TABELA_GRUPO = "CREATE TABLE IF NOT EXISTS TB_GRUPO (" +
             " ID_GRUPO INTEGER PRIMARY KEY, " +
-            " DESCRICAO_GRUPO TEXT)";
+            " DESCRICAO_GRUPO VARCHAR(255))";
 
     private final String SCRIPT_TABELA_IMAGEM = "CREATE TABLE IF NOT EXISTS TB_IMAGEM (" +
             " ID_IMAGEM INTEGER PRIMARY KEY," +
-            " CODIGO_PRODUTO TEXT," +
+            " CODIGO_PRODUTO VARCHAR(255)," +
             " FOTO BLOB)";
 
     private final String SCRIPT_TABELA_PROMOCAO = "CREATE TABLE IF NOT EXISTS TB_PROMOCAO (" +
             " ID_PROMOCAO INTEGER PRIMARY KEY, " +
-            " NOME TEXT, " +
-            " TIPO TEXT, " +
-            " OBJETIVO TEXT, " +
+            " NOME VARCHAR(255), " +
+            " TIPO VARCHAR(255), " +
+            " OBJETIVO VARCHAR(255), " +
             " TEMPO INTEGER, " +
-            " DT_INICIO TEXT, " +
-            " DT_VENCIMENTO TEXT, " +
-            " VALOR TEXT)";
+            " DT_INICIO VARCHAR(255), " +
+            " DT_VENCIMENTO VARCHAR(255), " +
+            " VALOR VARCHAR(255))";
 
     private final String SCRIPT_TABELA_USUARIO = "CREATE TABLE IF NOT EXISTS TB_USUARIO (" +
             " ID_USUARIO INTEGER PRIMARY KEY AUTOINCREMENT, " +
             " CODIGO INTEGER, " +
-            " LOGIN TEXT NOT NULL, " +
-            " SENHA TEXT, " +
-            " ATIVO TEXT, " +
-            " MOBILE TEXT," +
-            " STATUS_BLOQ_CAD_CLIENTE TEXT)";
+            " LOGIN VARCHAR(255) NOT NULL, " +
+            " SENHA VARCHAR(255), " +
+            " ATIVO VARCHAR(255), " +
+            " MOBILE VARCHAR(255)," +
+            " STATUS_BLOQ_CAD_CLIENTE VARCHAR(255))";
 
     private final String SCRIPT_TABELA_MENSAGEM = "CREATE TABLE IF NOT EXISTS TB_MENSAGEM (" +
             " ID_MENSAGEM INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            " DESCRICAO TEXT, " +
-            " DATA TEXT, " +
-            " HORA TEXT, " +
+            " DESCRICAO VARCHAR(255), " +
+            " DATA VARCHAR(255), " +
+            " HORA VARCHAR(255), " +
             " ID_USUARIO INTEGER, " +
             " STATUS_MENSAGEM INTEGER )";
 
     private final String SCRIPT_TABELA_ATUALIZACAO_TABELA = "CREATE TABLE IF NOT EXISTS TB_ATUALIZACAO_TABELA (" +
             " ID_ATUALIZACAO INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            " TABELA_ATUALIZADA TEXT, " +
+            " TABELA_ATUALIZADA VARCHAR(255), " +
             " QTD_ITENS INTEGER, " +
-            " DT_ATUALIZACAO TEXT, " +
-            " HORA_ATUALIZACAO TEXT)";
+            " DT_ATUALIZACAO VARCHAR(255), " +
+            " HORA_ATUALIZACAO VARCHAR(255))";
+
     private final String SCRIPT_TABELA_CONFIGURACAO = "CREATE TABLE IF NOT EXISTS TB_CONFIGURACAO (" +
             " ID_CONFIG INTEGER PRIMARY KEY, " +
             " ID_EMPRESA INTEGER, " +
-            " NOME_EMPRESA TEXT, " +
-            " CNPJ TEXT, " +
-            " PRODUTO_ZERADO TEXT, " +
+            " NOME_EMPRESA VARCHAR(255), " +
+            " CNPJ VARCHAR(255), " +
+            " PRODUTO_ZERADO VARCHAR(255), " +
             " CORRECAO_CLIENTE INTEGER, " +
-            " POR_ITEM TEXT, " +
-            " DESCONTO_TOTAL TEXT, " +
-            " DESCONTO_POR_ITEM TEXT, " +
-            " DESCONTO_A_PRAZO TEXT, " +
-            " QTD_DIAS TEXT, " +
-            " QTD_TITULOS TEXT, " +
-            " VALOR_MINIMO TEXT, " +
-            " BLOQUEIO_CLIENTE_D TEXT, " +
-            " VENDA_A_VISTA TEXT, " +
-            " BLOQUEIO_ATRASO TEXT, " +
-            " AUMENTAR_PRECO TEXT, " +
-            " BAIXAR_PRECO TEXT, " +
-            " VL_MAX_PERC TEXT, " +
-            " TITULO_NAO_VENCIDO TEXT, " +
-            " PARAMETRO_CONEXAO TEXT, " +
-            " SENHA_ACESSO TEXT, " +
-            " TIPO_SISTEMA TEXT, " +
-            " BLOQUEIO_TRINTA_DIAS TEXT, " +
+            " POR_ITEM VARCHAR(255), " +
+            " DESCONTO_TOTAL VARCHAR(255), " +
+            " DESCONTO_POR_ITEM VARCHAR(255), " +
+            " DESCONTO_A_PRAZO VARCHAR(255), " +
+            " QTD_DIAS VARCHAR(255), " +
+            " QTD_TITULOS VARCHAR(255), " +
+            " VALOR_MINIMO VARCHAR(255), " +
+            " BLOQUEIO_CLIENTE_D VARCHAR(255), " +
+            " VENDA_A_VISTA VARCHAR(255), " +
+            " BLOQUEIO_ATRASO VARCHAR(255), " +
+            " AUMENTAR_PRECO VARCHAR(255), " +
+            " BAIXAR_PRECO VARCHAR(255), " +
+            " VL_MAX_PERC VARCHAR(255), " +
+            " TITULO_NAO_VENCIDO VARCHAR(255), " +
+            " PARAMETRO_CONEXAO VARCHAR(255), " +
+            " SENHA_ACESSO VARCHAR(255), " +
+            " TIPO_SISTEMA VARCHAR(255), " +
+            " BLOQUEIO_TRINTA_DIAS VARCHAR(255), " +
             " EXIBIR_META, " +
-            " JUROS TEXT, " +
-            " TIPO_JUROS TEXT, " +
-            " CARENCIA_JUROS TEXT, " +
-            " INFORMACAO_ADICIONAL TEXT, " +
-            " EXIBIR_ESTOQUE TEXT, " +
-            " HABILITA_CAIXA_FLEX TEXT, " +
-            " HABILITA_PASTA_VENDEDOR TEXT, " +
-            " VENDA_ESTOQUE_ZERADO TEXT,"+
+            " JUROS VARCHAR(255), " +
+            " TIPO_JUROS VARCHAR(255), " +
+            " CARENCIA_JUROS VARCHAR(255), " +
+            " INFORMACAO_ADICIONAL VARCHAR(255), " +
+            " EXIBIR_ESTOQUE VARCHAR(255), " +
+            " HABILITA_CAIXA_FLEX VARCHAR(255), " +
+            " HABILITA_PASTA_VENDEDOR VARCHAR(255), " +
+            " VENDA_ESTOQUE_ZERADO VARCHAR(255),"+
             " VENDAFRACIONADA INTEGER," +
             " GERENCIAR_CARGA INTEGER," +
             " TIPO_PRECO_DIFERENCIADO INTEGER," +
             " ATIVAR_PRECO_DIFERENCIADO INTEGER," +
-            " DESCONTO_VENDA_EXTERNA TEXT) ";
+            " DESCONTO_VENDA_EXTERNA VARCHAR(255)) ";
 
 
     private final String SCRIPT_TABELA_PRODUTO_ZERADO = "CREATE TABLE IF NOT EXISTS TB_PRODUTO_ZERADO (" +
@@ -289,8 +290,8 @@ public class BancoDeDados  {
             " ID_PLANO INTEGER)";
     private final String SCRIPT_TABELA_ESPECIE = "CREATE TABLE IF NOT EXISTS TB_ESPECIE (" +
             " ID_ESPECIE INTEGER PRIMARY KEY, " +
-            " ESPECIE TEXT, " +
-            " USA_MEGA_AGIL TEXT)";
+            " ESPECIE VARCHAR(255), " +
+            " USA_MEGA_AGIL VARCHAR(255))";
 
     private final String SCRIPT_TABELA_ESPECIES_PLANO = "CREATE TABLE IF NOT EXISTS TB_ESPECIES_PLANO (" +
             " ID_ESPECIES_PLANO INTEGER PRIMARY KEY, " +
@@ -304,94 +305,94 @@ public class BancoDeDados  {
 
     private final String SCRIPT_TABELA_RELATORIO_VENDA = "CREATE TABLE IF NOT EXISTS TB_RELATORIO_VENDA (" +
             " ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            " MES TEXT, " +
-            " VENDA TEXT, " +
+            " MES VARCHAR(255), " +
+            " VENDA VARCHAR(255), " +
             " QTD_PEDIDO INTEGER, " +
-            " META TEXT, " +
-            " F_META TEXT, " +
-            " COMISSAO TEXT, " +
+            " META VARCHAR(255), " +
+            " F_META VARCHAR(255), " +
+            " COMISSAO VARCHAR(255), " +
             " ID_VENDEDOR INTEGER )";
 
     private final String SCRIPT_TABELA_RELATORIO_VENDA_PLANO = "CREATE TABLE IF NOT EXISTS TB_RELATORIO_VENDA_PLANO (" +
             " ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            " MES TEXT, " +
-            " ID_PLANO TEXT, " +
-            " VENDA TEXT, " +
+            " MES VARCHAR(255), " +
+            " ID_PLANO VARCHAR(255), " +
+            " VENDA VARCHAR(255), " +
             " QTD_PEDIDO INTEGER, " +
-            " META TEXT, " +
-            " F_META TEXT, " +
-            " COMISSAO TEXT, " +
+            " META VARCHAR(255), " +
+            " F_META VARCHAR(255), " +
+            " COMISSAO VARCHAR(255), " +
             " ID_VENDEDOR INTEGER )";
 
     private final String SCRIPT_TABELA_RELATORIO_VENDA_ROTA = "CREATE TABLE IF NOT EXISTS TB_RELATORIO_VENDA_ROTA (" +
             " ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            " MES TEXT, " +
-            " ID_ROTA TEXT, " +
-            " VENDA TEXT, " +
+            " MES VARCHAR(255), " +
+            " ID_ROTA VARCHAR(255), " +
+            " VENDA VARCHAR(255), " +
             " QTD_PEDIDO INTEGER, " +
-            " META TEXT, " +
-            " F_META TEXT, " +
-            " COMISSAO TEXT, " +
+            " META VARCHAR(255), " +
+            " F_META VARCHAR(255), " +
+            " COMISSAO VARCHAR(255), " +
             " ID_VENDEDOR INTEGER )";
 
 
     private final String SCRIPT_TABELA_VISITA_SEM_VENDA = "CREATE TABLE IF NOT EXISTS TB_VISITA_SEM_VENDA (" +
             " ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            " CODIGO_CLIENTE TEXT, " +
-            " CNPJCPF TEXT, " +
-            " RAZAO_SOCIAL TEXT, " +
-            " MOTIVO TEXT, " +
-            " DATA TEXT, " +
-            " HORA TEXT, " +
-            " INFORMACAO_ADICIONAL TEXT, " +
-            " STATUS_ENVIO TEXT, " +
+            " CODIGO_CLIENTE VARCHAR(255), " +
+            " CNPJCPF VARCHAR(255), " +
+            " RAZAO_SOCIAL VARCHAR(255), " +
+            " MOTIVO VARCHAR(255), " +
+            " DATA VARCHAR(255), " +
+            " HORA VARCHAR(255), " +
+            " INFORMACAO_ADICIONAL VARCHAR(255), " +
+            " STATUS_ENVIO VARCHAR(255), " +
             " ID_VENDEDOR INTEGER )";
 
     private final String SCRIPT_TABELA_PROMOCOES = "CREATE TABLE IF NOT EXISTS TB_PROMOCOES (" +
             " ID_PROMOCOES INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            " ATIVA TEXT, " +
-            " DESCRICAO TEXT, " +
+            " ATIVA VARCHAR(255), " +
+            " DESCRICAO VARCHAR(255), " +
             " TIPO_REQUISITO INTEGER, " +
-            " REQUISITO TEXT, " +
+            " REQUISITO VARCHAR(255), " +
             " TIPO_BENEFICIO INTEGER, " +
-            " BENEFICIO TEXT, " +
+            " BENEFICIO VARCHAR(255), " +
             " REQUISITO_MINIMO INTEGER, " +
-            " VALOR_BENEFICIO TEXT )";
+            " VALOR_BENEFICIO VARCHAR(255) )";
 
     private final String SCRIPT_TABELA_ITEM_PROMOCAO = "CREATE TABLE IF NOT EXISTS TB_ITEM_PROMOCAO (" +
             " ID_ITEM_PROMOCAO INTEGER PRIMARY KEY AUTOINCREMENT, " +
             " ID_PROMOCAO INTEGER, " +
-            " CODIGO TEXT, " +
-            " DESCRICAO TEXT, " +
-            " DATA TEXT )";
+            " CODIGO VARCHAR(255), " +
+            " DESCRICAO VARCHAR(255), " +
+            " DATA VARCHAR(255) )";
 
     private final String SCRIPT_TABELA_CAIXA_FLEX = "CREATE TABLE IF NOT EXISTS TB_CAIXA_FLEX (" +
             " ID INTEGER PRIMARY KEY, " +
-            " VALOR_CAIXA TEXT, " +
+            " VALOR_CAIXA VARCHAR(255), " +
             " ID_VENDEDOR INTEGER, " +
-            " DATA_INICIAL TEXT, " +
-            " DATA_FINAL TEXT, " +
-            " STATUS TEXT)";
+            " DATA_INICIAL VARCHAR(255), " +
+            " DATA_FINAL VARCHAR(255), " +
+            " STATUS VARCHAR(255))";
 
     private final String SCRIPT_TABELA_CAIXA_FLEX_HISTORICO = "CREATE TABLE IF NOT EXISTS TB_CAIXA_FLEX_HISTORICO (" +
             " ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
             " ID_CAIXA_FLEX INTEGER, " +
             " ID_PEDIDO_FLEX INTEGER, " +
             " ID_PRODUTO_FLEX INTEGER, " +
-            " CPFCNPJ TEXT, " +
+            " CPFCNPJ VARCHAR(255), " +
             " ID_VENDEDOR INTEGER, " +
-            " VALOR_CREDITO TEXT, " +
-            " VALOR_DEBITO TEXT, " +
-            " PRECO_TABELA TEXT, " +
-            " PRECO_VENDA TEXT, " +
-            " DATA TEXT, " +
-            " HORA TEXT, " +
-            " STATUS TEXT)";
+            " VALOR_CREDITO VARCHAR(255), " +
+            " VALOR_DEBITO VARCHAR(255), " +
+            " PRECO_TABELA VARCHAR(255), " +
+            " PRECO_VENDA VARCHAR(255), " +
+            " DATA VARCHAR(255), " +
+            " HORA VARCHAR(255), " +
+            " STATUS VARCHAR(255))";
 
     private final String SCRIPT_TABELA_PRECO_DIFERENCIADO = "CREATE TABLE IF NOT EXISTS TB_PRECO_DIFERENCIADO (" +
-            "CODIGO_BARRA_PRODUTO TEXT PRIMARY KEY," +
-            "PRIMEIRO_PRECO TEXT," +
-            "SEGUNDO_PRECO TEXT)";
+            "CODIGO_BARRA_PRODUTO VARCHAR(255) PRIMARY KEY," +
+            "PRIMEIRO_PRECO VARCHAR(255)," +
+            "SEGUNDO_PRECO VARCHAR(255))";
 
     private final String SCRIPT_CRIA_INDEXES_TB_PRODUTO = " CREATE INDEX TB_PRODUTO_CODIGO_BARRA_PRODUTO_IDX ON TB_PRODUTO (CODIGO_BARRA_PRODUTO); \n " +
             "CREATE INDEX TB_PRODUTO_DESCRICAO_IDX ON TB_PRODUTO (DESCRICAO);";
@@ -399,8 +400,8 @@ public class BancoDeDados  {
     public void onCreate() {
         try {
             Statement statement = banco.createStatement();
-            statement.execute(SCRIPT_TABELA_PRODUTO);
-            statement.execute(SCRIPT_TABELA_PRODUTO_ZERADO);
+            boolean execute = statement.execute(SCRIPT_TABELA_PRODUTO);
+//            statement.execute(SCRIPT_TABELA_PRODUTO_ZERADO);
 
             System.out.println("Table created successfully.");
         } catch (SQLException e) {

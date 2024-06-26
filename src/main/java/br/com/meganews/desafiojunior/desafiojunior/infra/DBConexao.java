@@ -17,20 +17,12 @@ public class DBConexao {
     }
 
     public Connection dbConnection() {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        Connection connection;
 
         try {
-            connection = DriverManager.getConnection(jdbcUrl, username, password);
+            return DriverManager.getConnection(jdbcUrl, username, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        return connection;
     }
 }

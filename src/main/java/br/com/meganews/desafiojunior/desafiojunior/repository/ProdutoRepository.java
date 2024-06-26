@@ -134,59 +134,59 @@ public class ProdutoRepository implements IProdutoRepository {
     public void insert(Produtos produto) {
 
         String sql = "INSERT INTO TB_PRODUTO (" +
-                "CODIGO_BARRA_PRODUTO, DESCRICAO, REFERENCIA, UNIDADE, PRECO_UNIDADE, APLICACAO, DETALHE, PRECO_TABELA, PRECO, " +
+                "ID_PRODUTO, CODIGO_BARRA_PRODUTO, DESCRICAO, REFERENCIA, UNIDADE, PRECO_UNIDADE, APLICACAO, DETALHE, PRECO_TABELA, PRECO, " +
                 "ESTOQUE_ATUAL, FOTO_PRODUTO, DT_ULTIMA_ENTRADA_ESTOQUE, QTD_FRACIONAL, PROMOCAO, ESTOQUE_REPOSTO, PRECO_ANTERIOR, " +
                 "ID_GRUPO, ID_MARCA, CST, PRECO_PF, PRECO_PJ, QUANT_EMBALAGEM, ICMS_ALIQUOTA, ICMS_BC_VALOR, ICMS_VALOR, MVA, " +
                 "ICMS_ST_BC_VALOR, ICMS_ST_VALOR, MVA_PF, ICMS_ST_BC_VALOR_PF, ICMS_ST_VALOR_PF, IPI_ALIQUOTA, IPI_BC_VALOR, IPI_VALOR, " +
                 "FCP, ICMS_BC_POR, ICMS_ST_BC_POR,  REDUCAO_BC, ID_CARGA, DESABILITADO" +
-                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
             PreparedStatement pstmt = sqlConnection.prepareStatement(sql);
 
+            pstmt.setInt(1, (int) produto.getIdProduto());
+            pstmt.setInt(2, Integer.parseInt(produto.getCodigoDeBarra()));
+            pstmt.setString(3, produto.getDescricao());
 
-            pstmt.setInt(1, Integer.parseInt(produto.getCodigoDeBarra()));
-            pstmt.setString(2, produto.getDescricao());
-
-            pstmt.setString(3, produto.getReferencia());
-            pstmt.setString(4, produto.getUnidade());
-            pstmt.setString(5, produto.getPrecoUnidade());
-            pstmt.setString(6, produto.getAplicacao());
-            pstmt.setString(7, produto.getDetalheProduto());
-            pstmt.setString(8, produto.getTabelaPreco());
-            pstmt.setString(9, produto.getPreco());
-            pstmt.setInt(10, Integer.parseInt(produto.getEstoqueAtual()));
-            pstmt.setString(11, produto.getFotoProduto());
-            pstmt.setString(12, produto.getDataUltimaEntradaEstoque());
-            pstmt.setString(13, produto.getQuantidadeFracioanl());
-            pstmt.setString(14, produto.getPromocao());
-            pstmt.setString(15, produto.getEstoqueReposto());
-            pstmt.setString(16, produto.getPrecoAnterior());
-            pstmt.setInt(17, Integer.parseInt(produto.getIdGrupo()));
-            pstmt.setInt(18, Integer.parseInt(produto.getIdMarca()));
-            pstmt.setString(19, produto.getCst());
-            pstmt.setString(20, produto.getPrecoPF());
-            pstmt.setString(21, produto.getPrecoPJ());
-            pstmt.setString(22, produto.getQuantEmbalagem());
-            pstmt.setString(23, produto.getIcms_aliquota());
-            pstmt.setString(24, produto.getIcms_bc_valor());
-            pstmt.setString(25, produto.getIcms_valor());
-            pstmt.setString(26, produto.getMva());
-            pstmt.setString(27, produto.getIcms_st_bc_valor());
-            pstmt.setString(28, produto.getIcms_st_valor());
-            pstmt.setString(29, produto.getMva_pf());
-            pstmt.setString(30, produto.getIcms_st_bc_valor_pf());
-            pstmt.setString(31, produto.getIcms_st_valor_pf());
-            pstmt.setString(32, produto.getIpi_aliquota());
-            pstmt.setString(33, produto.getIpi_bc_valor());
-            pstmt.setString(34, produto.getIpi_valor());
-            pstmt.setString(35, produto.getFcp());
-            pstmt.setString(36, produto.getIcms_bc_por());
-            pstmt.setString(37, produto.getIcms_st_bc_por());
-            pstmt.setString(38, produto.getReducaoBC());
-            pstmt.setInt(39, Integer.parseInt(produto.getIdCarga()));
-            pstmt.setString(40, produto.getDesabilitado());
+            pstmt.setString(4, produto.getReferencia());
+            pstmt.setString(5, produto.getUnidade());
+            pstmt.setString(6, produto.getPrecoUnidade());
+            pstmt.setString(7, produto.getAplicacao());
+            pstmt.setString(8, produto.getDetalheProduto());
+            pstmt.setString(9, produto.getTabelaPreco());
+            pstmt.setString(10, produto.getPreco());
+            pstmt.setInt(11, Integer.parseInt(produto.getEstoqueAtual()));
+            pstmt.setString(12, produto.getFotoProduto());
+            pstmt.setString(13, produto.getDataUltimaEntradaEstoque());
+            pstmt.setString(14, produto.getQuantidadeFracioanl());
+            pstmt.setString(15, produto.getPromocao());
+            pstmt.setString(16, produto.getEstoqueReposto());
+            pstmt.setString(17, produto.getPrecoAnterior());
+            pstmt.setInt(18, Integer.parseInt(produto.getIdGrupo()));
+            pstmt.setInt(19, Integer.parseInt(produto.getIdMarca()));
+            pstmt.setString(20, produto.getCst());
+            pstmt.setString(21, produto.getPrecoPF());
+            pstmt.setString(22, produto.getPrecoPJ());
+            pstmt.setString(23, produto.getQuantEmbalagem());
+            pstmt.setString(24, produto.getIcms_aliquota());
+            pstmt.setString(25, produto.getIcms_bc_valor());
+            pstmt.setString(26, produto.getIcms_valor());
+            pstmt.setString(27, produto.getMva());
+            pstmt.setString(28, produto.getIcms_st_bc_valor());
+            pstmt.setString(29, produto.getIcms_st_valor());
+            pstmt.setString(30, produto.getMva_pf());
+            pstmt.setString(31, produto.getIcms_st_bc_valor_pf());
+            pstmt.setString(32, produto.getIcms_st_valor_pf());
+            pstmt.setString(33, produto.getIpi_aliquota());
+            pstmt.setString(34, produto.getIpi_bc_valor());
+            pstmt.setString(35, produto.getIpi_valor());
+            pstmt.setString(36, produto.getFcp());
+            pstmt.setString(37, produto.getIcms_bc_por());
+            pstmt.setString(38, produto.getIcms_st_bc_por());
+            pstmt.setString(39, produto.getReducaoBC());
+            pstmt.setInt(40, Integer.parseInt(produto.getIdCarga()));
+            pstmt.setString(41, produto.getDesabilitado());
 
             pstmt.executeUpdate();
 
@@ -221,7 +221,8 @@ public class ProdutoRepository implements IProdutoRepository {
             PreparedStatement pstmt = sqlConnection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
 
-            if (rs.next() && rs.getInt("total") == 0) return true;
+            rs.next();
+            if (rs.getInt("total") == 0) return true;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

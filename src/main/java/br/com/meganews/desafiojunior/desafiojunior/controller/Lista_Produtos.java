@@ -1,7 +1,6 @@
 package br.com.meganews.desafiojunior.desafiojunior.controller;
 
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
-import br.com.meganews.desafiojunior.desafiojunior.repository.IProdutoRepository;
 import br.com.meganews.desafiojunior.desafiojunior.service.ServiceListaProdutos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,8 +21,6 @@ public class Lista_Produtos implements Initializable {
 
     private ServiceListaProdutos serviceListaProdutos;
 
-    IProdutoRepository produtoRepository;
-
     private static final Locale LOCAL = new Locale("pt", "BR");
 
     private ObservableList<Produto> produtoObservableList;
@@ -34,12 +31,6 @@ public class Lista_Produtos implements Initializable {
 
         produtoObservableList = FXCollections.observableArrayList();
 
-        List<Produtos> list = serviceListaProdutos.listarProdutos();
-
-        List<Produto> collect = list.stream().map(Produto::new).toList();
-
-        produtoObservableList.addAll(collect);
-
     }
 
 
@@ -47,9 +38,23 @@ public class Lista_Produtos implements Initializable {
     protected void onAtualizaButtonClick() {
         try {
             serviceListaProdutos.atualizar();
+            mostrarProdutos();
+            ContaItens();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void mostrarProdutos() {
+        List<Produtos> list = serviceListaProdutos.listarProdutos();
+
+        List<Produto> collect = list.stream().map(Produto::new).toList();
+
+        produtoObservableList.addAll(collect);
+
+        myListWiew.setItems(produtoObservableList);
+        myListWiew.setCellFactory(myListWiew -> new ProdutoListViewCell());
     }
 
     private void ContaItens() {
@@ -59,9 +64,7 @@ public class Lista_Produtos implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        myListWiew.setItems(produtoObservableList);
-        myListWiew.setCellFactory(myListWiew -> new ProdutoListViewCell());
-
+        mostrarProdutos();
         ContaItens();
     }
 }

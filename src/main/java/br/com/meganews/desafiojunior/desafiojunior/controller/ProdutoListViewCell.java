@@ -62,7 +62,7 @@ public class ProdutoListViewCell extends ListCell<Produto> {
 
             }
 
-            label2.setText(String.valueOf(produto.getCodigo()));
+            label2.setText(produto.getCodigo());
             label4.setText(produto.getProduto());
             label6.setText(produto.getReferencia());
             label8.setText(produto.getPromocao());
