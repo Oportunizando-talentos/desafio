@@ -1,33 +1,41 @@
 package br.com.meganews.desafiojunior.desafiojunior.service;
 
-import br.com.meganews.desafiojunior.desafiojunior.infra.IConsulta;
+import br.com.meganews.desafiojunior.desafiojunior.exceptions.RemoteConnectionException;
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
-import br.com.meganews.desafiojunior.desafiojunior.repository.IProdutoRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 
 public class ServiceListaProdutos {
-    private IProdutoRepository produtoRepository;
-    private IConsulta consultaAPI;
+    private final IProdutoRepository<Produtos> produtoRepository;
+    private final IConsulta consultaAPI;
+    private final Logger logger = LogManager.getLogger();
 
-    public ServiceListaProdutos(IProdutoRepository produtoRepository, IConsulta consultaAPI) {
+    public ServiceListaProdutos(IProdutoRepository<Produtos> produtoRepository, IConsulta consultaAPI) throws RemoteConnectionException {
         this.produtoRepository = produtoRepository;
         this.consultaAPI = consultaAPI;
         atualizar();
     }
 
     private void inserirProdutos() {
-        List<Produtos> produtos = consultaAPI.getProdutos();
-        produtos.forEach(produto -> produtoRepository.insert(produto));
-    }
 
+        consultaAPI
+                .getProdutos()
+                .forEach(produtoRepository::insert);
+
+    }
     public void atualizar() {
+
         if (produtoRepository.tabelaVazia()) {
             inserirProdutos();
         }
+
     }
 
     public List<Produtos> listarProdutos() {
+
         return produtoRepository.buscarProduto(null, null, null);
+
     }
 }

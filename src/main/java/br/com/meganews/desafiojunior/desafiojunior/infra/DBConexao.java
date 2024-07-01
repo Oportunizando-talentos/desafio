@@ -16,13 +16,7 @@ public class DBConexao {
         this.password = password;
     }
 
-    public Connection dbConnection() {
-
-        try {
-            return DriverManager.getConnection(jdbcUrl, username, password);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+    public Connection dbConnection() throws SQLException{
+        return DriverManager.getConnection(jdbcUrl, username, password);
     }
 }

@@ -397,17 +397,11 @@ public class BancoDeDados  {
     private final String SCRIPT_CRIA_INDEXES_TB_PRODUTO = " CREATE INDEX TB_PRODUTO_CODIGO_BARRA_PRODUTO_IDX ON TB_PRODUTO (CODIGO_BARRA_PRODUTO); \n " +
             "CREATE INDEX TB_PRODUTO_DESCRICAO_IDX ON TB_PRODUTO (DESCRICAO);";
 
-    public void onCreate() {
-        try {
-            Statement statement = banco.createStatement();
-            boolean execute = statement.execute(SCRIPT_TABELA_PRODUTO);
-//            statement.execute(SCRIPT_TABELA_PRODUTO_ZERADO);
+    public void onCreate() throws SQLException {
+        Statement statement = banco.createStatement();
+        boolean execute = statement.execute(SCRIPT_TABELA_PRODUTO);
 
-            System.out.println("Table created successfully.");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        System.out.println("Table created successfully.");
     }
 
 }

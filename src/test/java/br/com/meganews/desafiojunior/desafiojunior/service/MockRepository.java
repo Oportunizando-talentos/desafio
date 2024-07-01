@@ -1,7 +1,6 @@
 package br.com.meganews.desafiojunior.desafiojunior.service;
 
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
-import br.com.meganews.desafiojunior.desafiojunior.repository.IProdutoRepository;
 
 import java.util.List;
 
@@ -18,19 +17,14 @@ public class MockRepository implements IProdutoRepository {
     }
 
     @Override
-    public List buscarProdutoZerado(String filtro) {
-        return List.of();
-    }
-
-    @Override
     public void insert(Produtos produto) {
         produtos.add(produto);
     }
 
-    @Override
-    public void excluirTudo(Produtos produto) {
-
-    }
+//    @Override
+//    public void excluirTudo(Produtos produto) {
+//
+//    }
 
     @Override
     public boolean tabelaVazia() {

@@ -1,6 +1,5 @@
 package br.com.meganews.desafiojunior.desafiojunior.service;
 
-import br.com.meganews.desafiojunior.desafiojunior.infra.IConsulta;
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
 
 import java.util.ArrayList;

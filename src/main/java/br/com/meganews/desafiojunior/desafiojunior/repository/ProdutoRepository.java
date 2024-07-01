@@ -1,14 +1,23 @@
 package br.com.meganews.desafiojunior.desafiojunior.repository;
 
+import br.com.meganews.desafiojunior.desafiojunior.exceptions.RemoteConnectionException;
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
+import br.com.meganews.desafiojunior.desafiojunior.service.IProdutoRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProdutoRepository implements IProdutoRepository {
+public class ProdutoRepository implements IProdutoRepository<Produtos> {
 
-    private Connection sqlConnection;
+    private static final Logger logger = LogManager.getLogger(ProdutoRepository.class);
+
+    private final Connection sqlConnection;
 
     public ProdutoRepository(Connection sqlConnection) {
         this.sqlConnection = sqlConnection;
@@ -16,18 +25,19 @@ public class ProdutoRepository implements IProdutoRepository {
 
 
     @Override
-    public List buscarProduto(String filtro, String filtro2, String chkGrupo) {
+    public List<Produtos> buscarProduto(String filtro, String filtro2, String chkGrupo){
         List<Produtos> prod = new ArrayList<>();
 
+        String sql = "SELECT * FROM TB_PRODUTO";
+
         try {
-            Statement db = sqlConnection.createStatement();
-            String sql = "SELECT * FROM TB_PRODUTO";
-            String[] argumentos = null;
+            PreparedStatement db = sqlConnection.prepareStatement(sql);
             if (filtro != null) {
-                sql += " WHERE ESTOQUE_ATUAL = '" + filtro + "'";
+                db = sqlConnection.prepareStatement(sql.concat(" WHERE ESTOQUE_ATUAL = ?"));
+                db.setString(1, filtro);
             }
 
-            ResultSet resultSet = db.executeQuery(sql);
+            ResultSet resultSet = db.executeQuery();
 
             while (resultSet.next()) {
 
@@ -87,43 +97,8 @@ public class ProdutoRepository implements IProdutoRepository {
             db.close();
 
         } catch (SQLException e) {
-
-            throw new RuntimeException(e);
-        }
-
-        return prod;
-    }
-
-
-    @Override
-    public List<Produtos> buscarProdutoZerado(String filtro) {
-
-        List<Produtos> prod = new ArrayList<>();
-
-        try {
-            Statement db = sqlConnection.createStatement();
-            String sql = "SELECT CODIGO_BARRA_PRODUTO, ESTOQUE_ATUAL FROM TB_PRODUTO";
-            String[] argumentos = null;
-            if (filtro != null) {
-                sql += " WHERE ESTOQUE_ATUAL = '" + filtro + "'";
-            }
-
-            ResultSet resultSet = db.executeQuery(sql);
-
-            while (resultSet.next()) {
-
-                Produtos produto = new Produtos();
-                produto.setCodigoDeBarra(resultSet.getString("CODIGO_BARRA_PRODUTO"));
-                prod.add(produto);
-
-            }
-
-            resultSet.close();
-            db.close();
-
-        } catch (SQLException e) {
-
-            throw new RuntimeException(e);
+            logger.error(e.getMessage());
+            throw new RemoteConnectionException();
         }
 
         return prod;
@@ -141,9 +116,11 @@ public class ProdutoRepository implements IProdutoRepository {
                 "FCP, ICMS_BC_POR, ICMS_ST_BC_POR,  REDUCAO_BC, ID_CARGA, DESABILITADO" +
                 ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,  ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try {
 
-            PreparedStatement pstmt = sqlConnection.prepareStatement(sql);
+        PreparedStatement pstmt;
+        try {
+            pstmt = sqlConnection.prepareStatement(sql);
+
 
             pstmt.setInt(1, (int) produto.getIdProduto());
             pstmt.setInt(2, Integer.parseInt(produto.getCodigoDeBarra()));
@@ -190,45 +167,35 @@ public class ProdutoRepository implements IProdutoRepository {
 
             pstmt.executeUpdate();
 
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
-
-    @Override
-    public void excluirTudo(Produtos produto) {
-
-
-        try {
-
-            var pstmt = sqlConnection.createStatement();
-
-            pstmt.executeUpdate("DELETE FROM tb_produto");
-
-        } catch (SQLException e) {
-
-            throw new RuntimeException(e);
+        } catch (SQLException exception) {
+            logger.error(
+                    "Não foi possível persistir o produto no banco: {}",
+                    exception.getMessage()
+            );
         }
     }
 
     @Override
     public boolean tabelaVazia() {
+
         String sql = "SELECT COUNT(*) AS total FROM TB_PRODUTO";
+        PreparedStatement pstmt;
 
         try {
-            PreparedStatement pstmt = sqlConnection.prepareStatement(sql);
+            pstmt = sqlConnection.prepareStatement(sql);
+
             ResultSet rs = pstmt.executeQuery();
 
             rs.next();
-            if (rs.getInt("total") == 0) return true;
+
+            return rs.getInt("total") == 0;
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
 
-        return false;
+            logger.error(e.getMessage());
+            throw new RemoteConnectionException();
+
+        }
     }
 
 }

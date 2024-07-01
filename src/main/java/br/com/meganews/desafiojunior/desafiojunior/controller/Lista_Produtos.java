@@ -1,5 +1,6 @@
 package br.com.meganews.desafiojunior.desafiojunior.controller;
 
+import br.com.meganews.desafiojunior.desafiojunior.exceptions.RemoteConnectionException;
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
 import br.com.meganews.desafiojunior.desafiojunior.service.ServiceListaProdutos;
 import javafx.collections.FXCollections;
@@ -46,7 +47,7 @@ public class Lista_Produtos implements Initializable {
         }
     }
 
-    private void mostrarProdutos() {
+    private void mostrarProdutos() throws RemoteConnectionException {
         List<Produtos> list = serviceListaProdutos.listarProdutos();
 
         List<Produto> collect = list.stream().map(Produto::new).toList();
@@ -64,7 +65,11 @@ public class Lista_Produtos implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        mostrarProdutos();
+        try {
+            mostrarProdutos();
+        } catch (RemoteConnectionException e) {
+            throw new RuntimeException(e);
+        }
         ContaItens();
     }
 }

@@ -4,7 +4,7 @@ package br.com.meganews.desafiojunior.desafiojunior.model;
 
 import java.util.Objects;
 
-public class Produtos {
+public final class Produtos {
 
     public long idProduto;
     private String codigoDeBarra;
@@ -92,57 +92,9 @@ public class Produtos {
         this.estoqueReposto = estoqueReposto;
     }
 
-    public Produtos(String fotoProduto, long idProduto, String codigoDeBarra, String descricao, String descMarca, String descGrupo, String preco, String setQuant, String tabelaPreco,
-                    String unidade, String precoUnidade, String estoqueAtual, String promocao, String precoAnterior, String dataUltimaEntradaEstoque, String estoqueReposto,
-                    String precoPF, String precoPJ, String quantEmbalagem, String cst, String icms_aliquota, String icms_bc_valor, String icms_valor, String mva,
-                    String icms_st_bc_valor, String icms_st_valor, String mva_pf, String icms_st_bc_valor_pf, String icms_st_valor_pf, String ipi_aliquota, String ipi_bc_valor,
-                    String ipi_valor, String fcp, String reducaoBC, String icms_bc_por, String icms_st_bc_por, String bonificacao, String referencia) {
 
-        this.idProduto = idProduto;
-        this.codigoDeBarra = codigoDeBarra;
-        this.fotoProduto = fotoProduto;
-        this.descricao = descricao;
-        this.descMarca = descMarca;
-        this.descGrupo = descGrupo;
-        this.preco = preco;
-        this.setQuant = setQuant;
-        this.tabelaPreco = tabelaPreco;
-        this.unidade = unidade;
-        this.precoUnidade = precoUnidade;
-        this.estoqueAtual = estoqueAtual;
-        this.promocao = promocao;
-        this.precoAnterior = precoAnterior;
-        this.dataUltimaEntradaEstoque = dataUltimaEntradaEstoque;
-        this.estoqueReposto = estoqueReposto;
-        this.precoPF = precoPF;
-        this.precoPJ = precoPJ;
-        this.quantEmbalagem = quantEmbalagem;
-        this.cst = cst;
-        this.icms_aliquota = icms_aliquota;
-        this.icms_bc_valor = icms_bc_valor;
-        this.icms_valor = icms_valor;
-        this.mva = mva;
-        this.icms_st_bc_valor = icms_st_bc_valor;
-        this.icms_st_valor = icms_st_valor;
-        this.mva_pf = mva_pf;
-        this.icms_st_bc_valor_pf = icms_st_bc_valor_pf;
-        this.icms_st_valor_pf = icms_st_valor_pf;
-        this.ipi_aliquota = ipi_aliquota;
-        this.ipi_bc_valor = ipi_bc_valor;
-        this.ipi_valor = ipi_valor;
-        this.fcp = fcp;
-        this.reducaoBC = reducaoBC;
-        this.icms_bc_por = icms_bc_por;
-        this.icms_st_bc_por = icms_st_bc_por;
-        this.bonificacao = bonificacao;
-        this.referencia = referencia;
-    }
 
-    public Produtos(String descricao, int image) {
 
-        this.descricao = descricao;
-        this.image = image;
-    }
 
     public Produtos(long idProduto, String codigoDeBarra, String descricao, String referencia, String idMarca, String unidade, String precoUnidade,
                     String aplicacao,String idGrupo, String detalheProduto, String tabelaPreco, String preco, String estoqueAtual, String fotoProduto,
@@ -193,55 +145,6 @@ public class Produtos {
         this.idCarga = id_carga;
     }
 
-    public Produtos(long idProduto, String codigoDeBarra, String descricao, String referencia, String idMarca, String unidade, String precoUnidade,
-                    String aplicacao,String idGrupo, String detalheProduto, String tabelaPreco, String preco, String estoqueAtual,
-                    String dataUltimaEntradaEstoque, String quantidadeFracioanl, String promocao, String precoAnterior,
-                    String precoPF, String precoPJ, String quantEmbalagem, String cst, String icms_aliquota, String icms_bc_valor, String icms_valor, String mva,
-                    String icms_st_bc_valor, String icms_st_valor, String mva_pf, String icms_st_bc_valor_pf, String icms_st_valor_pf, String ipi_aliquota, String ipi_bc_valor,
-                    String ipi_valor, String fcp, String reducaoBC, String icms_bc_por, String icms_st_bc_por,String id_carga, String descMarca, String descGrupo, String estoqueReposto){
-        this.idProduto = idProduto;
-        this.codigoDeBarra = codigoDeBarra;
-        this.descricao = descricao;
-        this.referencia = referencia;
-        this.idMarca = idMarca;
-        this.unidade = unidade;
-        this.precoUnidade = precoUnidade;
-        this.aplicacao = aplicacao;
-        this.idGrupo = idGrupo;
-        this.detalheProduto = detalheProduto;
-        this.tabelaPreco = tabelaPreco;
-        this.preco = preco;
-        this.estoqueAtual = estoqueAtual;
-        this.dataUltimaEntradaEstoque = dataUltimaEntradaEstoque;
-        this.quantidadeFracioanl = quantidadeFracioanl;
-        this.promocao = promocao;
-        this.precoAnterior = precoAnterior;
-        this.precoPF = precoPF;
-        this.precoPJ = precoPJ;
-        this.quantEmbalagem = quantEmbalagem;
-        this.cst = cst;
-        this.icms_aliquota = icms_aliquota;
-        this.icms_bc_valor = icms_bc_valor;
-        this.icms_valor = icms_valor;
-        this.mva = mva;
-        this.icms_st_bc_valor = icms_st_bc_valor;
-        this.icms_st_valor = icms_st_valor;
-        this.mva_pf = mva_pf;
-        this.icms_st_bc_valor_pf = icms_st_bc_valor_pf;
-        this.icms_st_valor_pf = icms_st_valor_pf;
-        this.ipi_aliquota = ipi_aliquota;
-        this.ipi_bc_valor = ipi_bc_valor;
-        this.ipi_valor = ipi_valor;
-        this.fcp = fcp;
-        this.reducaoBC = reducaoBC;
-        this.icms_bc_por = icms_bc_por;
-        this.icms_st_bc_por = icms_st_bc_por;
-        this.idCarga = id_carga;
-        this.descMarca = descMarca;
-        this.descGrupo = descGrupo;
-        this.estoqueReposto = estoqueReposto;
-    }
-
 
     public long getIdProduto(){
         return idProduto;
@@ -283,9 +186,7 @@ public class Produtos {
         this.idMarca = idMarca;
     }
 
-    public String getDescMarca() {
-        return descMarca;
-    }
+
 
     public void setDescMarca(String descMarca) {
         this.descMarca = descMarca;
@@ -323,9 +224,6 @@ public class Produtos {
         this.idGrupo = idGrupo;
     }
 
-    public String getDescGrupo() {
-        return descGrupo;
-    }
 
     public void setDescGrupo(String descGrupo) {
         this.descGrupo = descGrupo;
@@ -396,13 +294,7 @@ public class Produtos {
         this.quantidadeFracioanl = quantidadeFracioanl;
     }
 
-    public String getSetQuant(){
-        return setQuant;
-    }
 
-    public void setSetQuant(String setQuant){
-        this.setQuant = setQuant;
-    }
 
     public String getPromocao(){
         return promocao;
@@ -564,13 +456,6 @@ public class Produtos {
         this.reducaoBC = reducaoBC;
     }
 
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
-    }
 
     public String getIcms_bc_por() {
         return icms_bc_por;
@@ -588,13 +473,7 @@ public class Produtos {
         this.icms_st_bc_por = icms_st_bc_por;
     }
 
-    public String getBonificacao() {
-        return bonificacao;
-    }
 
-    public void setBonificacao(String bonificacao) {
-        this.bonificacao = bonificacao;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -604,9 +483,5 @@ public class Produtos {
         return idProduto == produtos.idProduto && Objects.equals(codigoDeBarra, produtos.codigoDeBarra);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(idProduto, codigoDeBarra);
-    }
 
 }

@@ -1,123 +1,132 @@
 package br.com.meganews.desafiojunior.desafiojunior.infra;
 
+import br.com.meganews.desafiojunior.desafiojunior.exceptions.RemoteConnectionException;
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
+import br.com.meganews.desafiojunior.desafiojunior.service.IConsulta;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Consulta implements IConsulta{
-    private String url;
+public class Consulta implements IConsulta {
+    private final String url;
+    private final HttpClient httpClient;
+    private static final Logger logger = LogManager.getLogger(Consulta.class);
 
-    public Consulta(String url) {
+    public Consulta(String url, HttpClient httpClient) {
         this.url = url;
+        this.httpClient = httpClient;
     }
 
-    public List<Produtos> getProdutos(){
-        try {
-            String consultar = Consultar();
+    public List<Produtos> getProdutos() {
+        String consultar = consultar();
 
-            return Gravar(consultar);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        logger.error("Agora nós vamos gravar!");
+
+        return desserializarJson(consultar);
+    }
+
+    private String consultar() {
+
+        HttpResponse<String> connection = getConnection();
+
+        logger.error("Consulta realizada!");
+
+        if (connection.statusCode() != 200) {
+
+            RemoteConnectionException remoteConnectionException = new RemoteConnectionException();
+
+            logger.error("Consulta falhou! {}",remoteConnectionException.getMessage());
+
+            throw remoteConnectionException;
         }
 
+        return "{" + "\"" + "Produto" + "\"" + ":" +
+                connection.body() +
+                "}";
     }
 
-    public String Consultar() throws Exception {
-        StringBuilder json = new StringBuilder("");
+    private HttpResponse<String> getConnection()  {
+
+            HttpRequest request = HttpRequest
+                    .newBuilder()
+                    .uri(URI.create(url))
+                    .GET()
+                    .build();
+
+            logger.error("Conectado!");
+
         try {
-            URL urlNet = new URL(url);
-            HttpURLConnection con = (HttpURLConnection) urlNet.openConnection();
-            con.setRequestMethod("GET");
-            con.setDoInput(true);
-            con.connect();
-            var codigoResposta = con.getResponseCode();
-            InputStream inp = con.getInputStream();
-            InputStreamReader response = new InputStreamReader(inp, StandardCharsets.UTF_8);
-            BufferedReader bufferedReader = new BufferedReader(response);
-            String linha;
-
-            if (codigoResposta != 200) {
-                throw new Exception();
-            }
-
-            while ((linha = bufferedReader.readLine()) != null) {
-                json.append("{" + "\"" + "Produto" +"\"" + ":");
-                json.append(linha);
-                json.append("}");
-            }
-
-        } catch (Exception e) {
-            throw e;
+            return httpClient.send(request,
+                    HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            logger.error(e.getMessage());
         }
-        return json.toString();
+        return new HttpResposeNull();
     }
 
-    public List<Produtos> Gravar(String resposta) throws Exception {
+    private List<Produtos> desserializarJson(String resposta) {
         List<Produtos> produtos = new ArrayList<>();
 
         JSONObject jsonRootObjectProd;
-        try {
-            jsonRootObjectProd = new JSONObject(resposta);
-            JSONArray jsonArrayProd = jsonRootObjectProd.optJSONArray("Produto");
-            int tamanho = jsonArrayProd.length();
-            for (int i = 0; i < jsonArrayProd.length(); i++) {
-                JSONObject jsonObjectPro;
-                jsonObjectPro = jsonArrayProd.getJSONObject(i);
+        jsonRootObjectProd = new JSONObject(resposta);
+        JSONArray jsonArrayProd = jsonRootObjectProd.optJSONArray("Produto");
+        for (int i = 0; i < jsonArrayProd.length(); i++) {
+            JSONObject jsonObjectPro;
+            jsonObjectPro = jsonArrayProd.getJSONObject(i);
 
-                Produtos prod = new Produtos(jsonObjectPro.optLong("idProduto"),
-                        jsonObjectPro.optString("codigoBarraProduto"),
-                        jsonObjectPro.optString("descricaoProduto"),
-                        jsonObjectPro.optString("referenciaProduto"),
-                        jsonObjectPro.optString("idMarca"),
-                        jsonObjectPro.optString("unidadeProduto"),
-                        jsonObjectPro.optString("precoUnidadeProduto"),
-                        jsonObjectPro.optString("aplicacaoProduto"),
-                        jsonObjectPro.optString("idGrupo"),
-                        jsonObjectPro.optString("detalheProduto"),
-                        jsonObjectPro.optString("precoTabelaProduto"),
-                        jsonObjectPro.optString("precoProduto"),
-                        jsonObjectPro.optString("estoqueAtualProduto"),
-                        jsonObjectPro.optString("fotoProduto"),
-                        jsonObjectPro.optString("dataUltimaEntradaEstoque"),
-                        jsonObjectPro.optString("qtdFracionalProduto"),
-                        jsonObjectPro.optString("promocao"),
-                        jsonObjectPro.optString("precoAnterior"),
-                        jsonObjectPro.optString("precoPF"),
-                        jsonObjectPro.optString("precoPJ"),
-                        jsonObjectPro.optString("quantEmbalagem"),
-                        jsonObjectPro.optString("cst"),
-                        jsonObjectPro.optString("icms_aliquota"),
-                        jsonObjectPro.optString("icms_bc_valor"),
-                        jsonObjectPro.optString("icms_valor"),
-                        jsonObjectPro.optString("mva"),
-                        jsonObjectPro.optString("icms_st_bc_valor"),
-                        jsonObjectPro.optString("icms_st_valor"),
-                        jsonObjectPro.optString("mva_pf"),
-                        jsonObjectPro.optString("icms_st_bc_valor_pf"),
-                        jsonObjectPro.optString("icms_st_valor_pf"),
-                        jsonObjectPro.optString("ipi_aliquota"),
-                        jsonObjectPro.optString("ipi_bc_valor"),
-                        jsonObjectPro.optString("ipi_valor"),
-                        jsonObjectPro.optString("fcp"),
-                        jsonObjectPro.optString("reducaoBC"),
-                        jsonObjectPro.optString("icms_bc_por"),
-                        jsonObjectPro.optString("icms_st_bc_por"),
-                        "",
-                        jsonObjectPro.optString("idCarga").isEmpty() ? "" : jsonObjectPro.optString("idCarga")
-                );
-                produtos.add(prod);
-            }
-        } catch (Exception e) {
-            throw e;
+            Produtos prod = new Produtos(jsonObjectPro.optLong("idProduto"),
+                    jsonObjectPro.optString("codigoBarraProduto"),
+                    jsonObjectPro.optString("descricaoProduto"),
+                    jsonObjectPro.optString("referenciaProduto"),
+                    jsonObjectPro.optString("idMarca"),
+                    jsonObjectPro.optString("unidadeProduto"),
+                    jsonObjectPro.optString("precoUnidadeProduto"),
+                    jsonObjectPro.optString("aplicacaoProduto"),
+                    jsonObjectPro.optString("idGrupo"),
+                    jsonObjectPro.optString("detalheProduto"),
+                    jsonObjectPro.optString("precoTabelaProduto"),
+                    jsonObjectPro.optString("precoProduto"),
+                    jsonObjectPro.optString("estoqueAtualProduto"),
+                    jsonObjectPro.optString("fotoProduto"),
+                    jsonObjectPro.optString("dataUltimaEntradaEstoque"),
+                    jsonObjectPro.optString("qtdFracionalProduto"),
+                    jsonObjectPro.optString("promocao"),
+                    jsonObjectPro.optString("precoAnterior"),
+                    jsonObjectPro.optString("precoPF"),
+                    jsonObjectPro.optString("precoPJ"),
+                    jsonObjectPro.optString("quantEmbalagem"),
+                    jsonObjectPro.optString("cst"),
+                    jsonObjectPro.optString("icms_aliquota"),
+                    jsonObjectPro.optString("icms_bc_valor"),
+                    jsonObjectPro.optString("icms_valor"),
+                    jsonObjectPro.optString("mva"),
+                    jsonObjectPro.optString("icms_st_bc_valor"),
+                    jsonObjectPro.optString("icms_st_valor"),
+                    jsonObjectPro.optString("mva_pf"),
+                    jsonObjectPro.optString("icms_st_bc_valor_pf"),
+                    jsonObjectPro.optString("icms_st_valor_pf"),
+                    jsonObjectPro.optString("ipi_aliquota"),
+                    jsonObjectPro.optString("ipi_bc_valor"),
+                    jsonObjectPro.optString("ipi_valor"),
+                    jsonObjectPro.optString("fcp"),
+                    jsonObjectPro.optString("reducaoBC"),
+                    jsonObjectPro.optString("icms_bc_por"),
+                    jsonObjectPro.optString("icms_st_bc_por"),
+                    "",
+                    jsonObjectPro.optString("idCarga").isEmpty() ? "" : jsonObjectPro.optString("idCarga")
+            );
+            produtos.add(prod);
+
+            logger.error("Gravado com sucesso!");
         }
         return produtos;
     }

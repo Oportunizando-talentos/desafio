@@ -1,11 +1,13 @@
 package br.com.meganews.desafiojunior.desafiojunior.service;
 
+import br.com.meganews.desafiojunior.desafiojunior.exceptions.RemoteConnectionException;
 import br.com.meganews.desafiojunior.desafiojunior.infra.BancoDeDados;
 import br.com.meganews.desafiojunior.desafiojunior.infra.DBConexao;
 import br.com.meganews.desafiojunior.desafiojunior.model.Produtos;
 import br.com.meganews.desafiojunior.desafiojunior.repository.ProdutoRepository;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ServiceListaProdutosTest {
 
     @Test
-    void atualizarQuandoListaVazia() {
+    void atualizarQuandoListaVazia() throws RemoteConnectionException {
         List<Produtos> produtosListRepository = new ArrayList<>();
         List<Produtos> produtosListConsulta = new ArrayList<>();
 
@@ -35,7 +37,7 @@ class ServiceListaProdutosTest {
     }
 
     @Test
-    void atualizarQuandoListaNaoVazia() {
+    void atualizarQuandoListaNaoVazia() throws RemoteConnectionException {
         List<Produtos> produtosListaRepositorio = new ArrayList<>();
         List<Produtos> produtosListaConsulta = new ArrayList<>();
 
@@ -56,7 +58,7 @@ class ServiceListaProdutosTest {
     }
 
     @Test
-    void listarProdutos() {
+    void listarProdutos() throws RemoteConnectionException {
         List<Produtos> produtosListaRepositorio = new ArrayList<>();
         List<Produtos> produtosListaConsulta = new ArrayList<>();
 
@@ -77,7 +79,7 @@ class ServiceListaProdutosTest {
     }
 
     @Test
-    void atualizarQuandoListaVaziaIntegracao() {
+    void atualizarQuandoListaVaziaIntegracao() throws SQLException, RemoteConnectionException {
         List<Produtos> produtosListaConsulta = new ArrayList<>();
 
         DBConexao dbConexao = new DBConexao("jdbc:h2:mem:test", "sa", "");
@@ -99,10 +101,10 @@ class ServiceListaProdutosTest {
     }
 
     @Test
-    void atualizarQuandoListaNaoVaziaIntegracao() {
+    void atualizarQuandoListaNaoVaziaIntegracao() throws SQLException, RemoteConnectionException {
         List<Produtos> produtosListaConsulta = new ArrayList<>();
 
-        DBConexao dbConexao = new DBConexao("jdbc:h2:mem:atualizarQuandoListaNaoVaziaIntegracao", "sa", "");
+        DBConexao dbConexao = new DBConexao("jdbc:h2:mem:quandoListaNaoVazia", "sa", "");
 
         new BancoDeDados(dbConexao.dbConnection()).onCreate();
 
@@ -119,6 +121,31 @@ class ServiceListaProdutosTest {
 
         assertFalse(serviceListaProdutos.listarProdutos().isEmpty());
         assertEquals(produtosListaConsulta, serviceListaProdutos.listarProdutos());
+    }
+
+    @Test
+    void excecaoQuandoAtualizarProdutoInvalido() throws RemoteConnectionException {
+        List<Produtos> produtos = new ArrayList<>();
+
+        MockRepository produtoRepository = new MockRepository(produtos);
+
+        Produtos produto = new Produtos(null, null);
+
+        produtoRepository.insert(produto);
+
+        new ServiceListaProdutos(
+                produtoRepository,
+                new MockConsulta(produtos)
+        ).atualizar();
+
+        //assertThrows(SQLException.class, produtoRepository::insert);
+    }
+
+    @Test
+    void excecaoQuandoInserirInvalido() throws SQLException {
+        List<Produtos> listaProdutos = new ArrayList<>();
+
+        Produtos produto = new Produtos(1, "11");
     }
 
 }
